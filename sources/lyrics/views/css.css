@@ -1,0 +1,37 @@
+/* Menu */
+#menu,
+#lyrics,
+#subMenu {
+  background: #E9E9E9; }
+
+#article:hover,
+#subtitles:hover,
+#book:hover {
+  border-bottom: 3px solid #C0C0C0;
+  color: #777; }
+
+#article,
+#subtitles,
+#book {
+  cursor: pointer; }
+
+#lyrics {
+  border-bottom: 3px solid #C0C0C0;
+  color: #777; }
+
+#lyrics a:link,
+#lyrics a:visited {
+  color: #AAA; }
+
+#lyrics a:active {
+  color: #AAA; }
+
+#lyrics a:hover {
+  color: #777; }
+
+#text {
+  text-align: center; }
+
+#buttonSave,
+#buttonDelete {
+  display: none; }

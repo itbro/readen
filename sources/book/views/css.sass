@@ -1,0 +1,176 @@
+@import "../../../variables"
+
+/* Menu */
+#menu,
+#book,
+#subMenu
+    background: $bg
+
+#article:hover,
+#subtitles:hover,
+#lyrics:hover
+    border-bottom: 3px solid $bg_under
+    color: #777
+
+#article,
+#subtitles,
+#lyrics
+    cursor: pointer
+
+#book
+    border-bottom: 3px solid $bg_under
+    color: $color_this
+
+#level1
+    float: left
+
+#level1 a:link,
+#level1 a:visited
+    color: #AAA
+
+#level1 a:active
+    color: #AAA
+
+#level1 a:hover
+    color: $color_this
+
+.this_label
+    float: left
+    margin: 6px 0 0 6px
+    padding: 0
+    box-sizing: border-box
+    min-width: 13px
+    color: #777
+
+/* Pages list */
+#pageL
+    float: left
+    background: $bg
+    color: #777
+    height: 18px
+    margin-top: 0
+    border: 1px solid $bg
+
+@-moz-document url-prefix()
+    #pageL
+        margin-top: -1px
+
+
+#pageL OPTION
+    cursor: pointer
+
+.beforePage
+    float: left
+    width: 15px
+    height: 19px
+    margin: -6px 0 0 0
+    padding: 0
+
+.nextPage
+    float: left
+    width: 15px
+    height: 19px
+    margin: -6px 0 0 -18px
+    padding: 0 0 6px 4px
+    background: $bg
+
+.noBefore,
+.noNext
+    color: #cbcbcb
+    cursor: default
+    -moz-user-select: none
+    -webkit-user-select: none
+    text-decoration: none
+
+.beforePage a,
+.nextPage a
+    text-decoration: none
+
+.beforePage a:link,
+.nextPage a:link,
+.beforePage a:visited,
+.nextPage a:visited
+    color: #BBB
+
+.beforePage a:hover,
+.nextPage a:hover
+    color: deepPink
+
+
+
+#text
+    text-align: justify
+
+
+#buttonSave
+    display: none
+
+
+/* Add new page form */
+#addPage
+    position: fixed
+    z-index: 3
+    box-shadow: 0 0 12px #ddd
+
+#buttonAddPage
+    display: none
+
+
+.pages
+    float: left
+    height: 18px
+    color: #999
+    margin: 0
+    box-sizing: border-box
+
+#select_page_edit,
+#select_page_add
+    display: block
+    float: right
+    margin: 0
+    padding: 0 4px 0 0
+    border: 0
+    text-align: center
+    color: #777
+    height: 18px
+
+
+#author_title
+    height: 18px
+    overflow: hidden
+    margin: 0
+    padding: 0 0 0 4px
+    border: 0
+    color: #777
+    border-radius: 0 0 2px 0
+
+input[name='author_title']
+    display: block
+    width: 100%
+    height: 18px
+    border: 0
+    text-align: center
+    box-sizing: border-box
+
+
+
+
+
+
+
+
+#buttonDeletePage
+    display: none
+
+
+#delete_whole_book
+    position: relative
+    top: 4px
+    right: 8px
+    float: right
+    font-size: 12px
+    cursor: pointer
+    color: #999
+
+#delete_whole_book:hover
+    color: #FE5C72
