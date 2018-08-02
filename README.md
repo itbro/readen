@@ -4,6 +4,12 @@
 Readen is an application to help people learning a foreign language.  
 If you like reading foreign texts the app may be useful for you.
 
+The app consists of 2 parts: the Dictionary and the Sources.
+
+### The Dictionary
+![Alt text](/pres_1.gif "Example of usage")
+
+
 ## System Requirements
 Apache/2.4  
 PHP 7.2  

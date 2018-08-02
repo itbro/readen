@@ -266,7 +266,7 @@
         // If there has been no search at all
         $result = $db->query("SELECT *
                     FROM dictionary
-                    WHERE date = CURDATE()
+                    WHERE date = CURDATE() AND lel = 33333333333
                     ORDER BY id DESC");
         $num_rows = $result->rowCount();
 
