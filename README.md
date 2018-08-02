@@ -20,6 +20,6 @@ Mozilla Firefox / Google Chrome / Opera / Яндекс.Браузер (the lates
 ## Installation
 1. Edit the file _db_settings.php_ according to you database settings.
 2. Run the file _setup.php_ on your browser (go to http://localhost/setup.php).  
-   If everything has gone right the message "Well done! :)" has appeared on the screen.  
+   If everything go right the message "Well done! :)" will appear on the screen.  
 
 Now, go to http://localhost/ or http://localhost/dictionary/ on you browser.
