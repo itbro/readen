@@ -15,12 +15,16 @@ form
     margin: 0
     padding: 0
 
+textarea,
+input,
+select
+    outline: none
+
 textarea
     display: block
     margin: 0
     padding: 0
     box-sizing: border-box
-    outline: none
 
 input[type=text]
     box-sizing: border-box
@@ -30,10 +34,6 @@ input[type=submit]
 
 input::-ms-clear
     display: none
-
-input,
-textarea
-    outline: none
 
 a
     text-decoration: none
@@ -94,7 +94,6 @@ a:hover
     color: #333
     font-size: 13px
     font-family: Tahoma
-    outline: none
 
 
 #search_fileds
@@ -766,17 +765,21 @@ li .word_example_li .source
 
 #pageList
     float: left
-    border: 0
-    margin: -2px 0 0 0
+    margin: -4px 0 0 0
     padding: 0
     color: #777
+    border: 1px solid $list_border
+
+@-moz-document url-prefix()
+    #pageList
+        margin: -2px 0 0 0
 
 #pageList OPTION
     cursor: pointer
 
 .pagePrevious
     float: left
-    background: #FFF
+    background: $list_border
     width: 15px
     text-align: right
     margin: -3px 0 0 0
@@ -788,9 +791,9 @@ li .word_example_li .source
 
 .pageNext
     float: left
-    background: #FFF
+    background: $list_border
     width: 15px
-    margin: -3px 0 0 -17px
+    margin: -3px 0 0 -18px
     padding: 0 0 1px 3px
     text-align: center
     font-size: 15px

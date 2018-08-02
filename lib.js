@@ -1513,6 +1513,9 @@ function if_no_word_found()
     // See settings.js -> var searchEngine
 
     $("#add_new_word_button").click();
+    
+    $( "#search_lel" ).focus();
+    $( "#search_lel" )[0].selectionStart = $( "#search_lel" ).val().length;
 
     if ($("#search_lel").val().search(/[a-zA-z]/) != -1 && $("#search_meaning").val() == "") {
         var search_arr2 = $("#search_lel").val().split(" ");

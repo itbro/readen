@@ -13,12 +13,16 @@ form {
   margin: 0;
   padding: 0; }
 
+textarea,
+input,
+select {
+  outline: none; }
+
 textarea {
   display: block;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  outline: none; }
+  box-sizing: border-box; }
 
 input[type=text] {
   box-sizing: border-box; }
@@ -28,10 +32,6 @@ input[type=submit] {
 
 input::-ms-clear {
   display: none; }
-
-input,
-textarea {
-  outline: none; }
 
 a {
   text-decoration: none; }
@@ -88,8 +88,7 @@ a:hover {
   padding: 0 0 2px 0;
   color: #333;
   font-size: 13px;
-  font-family: Tahoma;
-  outline: none; }
+  font-family: Tahoma; }
 
 #search_fileds {
   width: 403px;
@@ -702,11 +701,14 @@ li .word_example_li .source {
 
 #pageList {
   float: left;
-  border: 0;
-  margin: -2px 0 0 0;
+  margin: -4px 0 0 0;
   padding: 0;
-  color: #777; }
+  color: #777;
+  border: 1px solid #FFF; }
 
+@-moz-document url-prefix() {
+  #pageList {
+    margin: -2px 0 0 0; } }
 #pageList OPTION {
   cursor: pointer; }
 
@@ -726,7 +728,7 @@ li .word_example_li .source {
   float: left;
   background: #FFF;
   width: 15px;
-  margin: -3px 0 0 -17px;
+  margin: -3px 0 0 -18px;
   padding: 0 0 1px 3px;
   text-align: center;
   font-size: 15px;
@@ -825,3 +827,5 @@ li .word_example_li .source {
 @-moz-document url-prefix() {
   .button_del {
     margin: 3px 0 0 0; } }
+
+/*# sourceMappingURL=css.css.map */

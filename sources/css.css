@@ -27,9 +27,9 @@ FORM {
   margin: 0;
   padding: 0; }
 
-TEXTAREA,
-INPUT,
-SELECT {
+textarea,
+input,
+select {
   outline: none; }
 
 TEXTAREA {
@@ -431,3 +431,5 @@ nored {
   box-sizing: border-box;
   font-size: 12px;
   text-transform: uppercase; }
+
+/*# sourceMappingURL=css.css.map */
