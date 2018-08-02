@@ -33,6 +33,8 @@ $(function() {
                         // (if the cell on the left is empty)
     					asd = "";
     					var count = 0;
+                        all_lels = $( ".remember_lel" );
+                        all_meanings = $( ".remember_meaning" );
     					all_lels.each(function(index) {
     						if ($( this ).val() != "" && $( this ).val() != del_empty)
                                 count++;
@@ -46,7 +48,7 @@ $(function() {
     						asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"" +
                             $( this ).val().replace(del_empty, "").trim() +
                             "\" class=\"remember_lel\"" + color_red + "><INPUT TYPE=\"TEXT\" VALUE=\"" +
-                            all_meanings.eq( index ).val().trim()+"\" class=\"remember_meaning\">\n";
+                            all_meanings.eq( index ).val().trim() + "\" class=\"remember_meaning\">\n";
     					});
 
                         // The number of full rows
