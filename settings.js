@@ -4,7 +4,7 @@ var newFieldsNum = 10;
 // To highlight or not words after the button search is pressed:
 // 0 = no
 // 1 = yes
-var redAtOnce = 0;
+var redAtOnce = 1;
 
 // What dictionary should be open for the pronunciation:
 // 0 = none
