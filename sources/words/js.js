@@ -238,8 +238,7 @@ $(function() {
 			$( "#pron_link" ).focus();
 
 			$( "#pron_word" ).val( word_to_listen );
-			window.open("http://dictionary.cambridge.org/dictionary/english/" +
-            word_to_listen, "_blank", param(parent.document.getElementById("topMenuSubMenu").getBoundingClientRect().left));
+			window.open("http://dictionary.cambridge.org/dictionary/english/" + word_to_listen, "_blank", param(parent.document.getElementById("topMenuSubMenu").getBoundingClientRect().left));
 		}
 	});
 
