@@ -80,7 +80,13 @@ function addFields(nfn)
 	all_lels = $( "#frame_words" ).contents().find( ".remember_lel" );
 	all_meanings = $( "#frame_words" ).contents().find( ".remember_meaning" );
 	all_lels.each(function( index ) {
-		$( this ).css( "color" ) == color_6 ? color_red = " style='color:red;font-weight:bold;'" : color_red = "";
+		if ($( this ).css( "color" ) == color_6)
+            color_red = color_red_value;
+        else if ($( this ).css( "font-weight" ) == 700)
+            color_red = " style='font-weight:bold;'";
+        else
+            color_red = "";
+
 		asd += "<INPUT TYPE='TEXT' VALUE=\"" +
         $( this ).val() + "\" class='remember_lel'" +
         color_red + "><INPUT TYPE='TEXT' VALUE=\"" +
