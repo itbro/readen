@@ -16,20 +16,17 @@ var word = "";
 var words_to_listen = "";
 var words_to_listen_arr = [];
 var wordsHeightMinus = 0;
-// WORDS
 var color_red = "";
 var word_to_listen = "";
 var thSS = 0;
 var thSE = 0;
-// To check whether or not the key Shift was pressed
 var shift_key = "";
-// DICTIONARY
 var urlAsArr = likePHPGet(document.location.search.replace("%20", " "));
 var prefixChange = 0;
-var form_id1 = '';
+var form_id1 = "";
 var word_to_listen2 = "";
 var iniSleft = 0;
-var bId = '';
+var bId = "";
 var coord = 0;
 
 // The size of gap between the result (the entries) and the list of pages
@@ -1513,7 +1510,7 @@ function if_no_word_found()
     // See settings.js -> var searchEngine
 
     $("#add_new_word_button").click();
-    
+
     $( "#search_lel" ).focus();
     $( "#search_lel" )[0].selectionStart = $( "#search_lel" ).val().length;
 

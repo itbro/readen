@@ -134,6 +134,7 @@
                         $lel_for_search_fields = htmlentities($foreign, ENT_QUOTES, "UTF-8", false);
                         $lel_for_add_new_word_form = htmlentities($foreign, ENT_QUOTES, "UTF-8", false);
                      } else {
+                        $request_lel = prepare_lel_for_db($foreign);
         				require_once "database/queries/only_lel.php";
         				$num_rows = $db->query($query)->rowCount();
 
