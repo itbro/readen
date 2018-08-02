@@ -792,7 +792,7 @@ li .word_example_li .source
 .pageNext
     float: left
     background: $list_border
-    width: 15px
+    width: 19px
     margin: -3px 0 0 -18px
     padding: 0 0 1px 3px
     text-align: center
@@ -800,6 +800,10 @@ li .word_example_li .source
     color: #CBCBCB
     -moz-user-select: none
     -webkit-user-select: none
+
+@-moz-document url-prefix()
+    .pageNext
+        width: 15px
 
 .pagePrevious a,
 .pageNext a
