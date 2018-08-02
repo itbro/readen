@@ -9,7 +9,7 @@ Apache/2.4
 PHP 7.2  
 MySQL 5.7
 
-Mozilla Firefox / Google Chrome / Яндекс.Браузер (the latest versions)
+Mozilla Firefox / Google Chrome / Opera / Яндекс.Браузер (the latest versions)
 
 ## Installation
 1. Edit the file _db_settings.php_ according to you database settings.
