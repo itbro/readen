@@ -1,4 +1,5 @@
 pronunciation/*
+!pronunciation/.gitkeep
 /sources/subtitles/*.srt
 /.sass-cache
 *.css.map
