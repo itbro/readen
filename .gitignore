@@ -1,4 +1,4 @@
-/pronunciation
+pronunciation/*
 /sources/subtitles/*.srt
 /.sass-cache
 *.css.map
