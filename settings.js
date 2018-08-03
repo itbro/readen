@@ -11,7 +11,7 @@ var redAtOnce = 1;
 // 1 = dictionary.cambridge.org
 // 2 = oxfordlearnersdictionaries.com
 // 3 = macmillandictionary.com
-var dicPron = 0;
+var dicPron = 1;
 
 // The dictionary window height
 var heightDic = 500;
