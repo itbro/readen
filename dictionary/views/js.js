@@ -344,6 +344,8 @@ $(window).on( "load", function() {
 	$( "#free_search" ).click(when_click_on_search);
 
 
+    $( "#sound" ).click(sound_dictionary);
+
 	$( "#pron_link" )
     .on( "input", function() {
 		pron_add($( "#pron_link" ).val() + "|" + $( "#pron_word" ).val());
@@ -351,10 +353,20 @@ $(window).on( "load", function() {
 		$( "#pron_link" ).hide();
 	})
     .click(function() {
+        // Open a window to add a pronunciation manually
+        $( "#file_name" ).val( $("#pron_word").val() );
+        $( "#file" ).click();
+
 		$( "#pron_link" ).hide();
 		$( "#pron_link" ).val( "" );
-		$( "#Cambridge" ).attr( "href", "pron_link_dic_by_default" );
+		$( "#Cambridge" ).attr( "href", pron_link_dic_by_default );
 	});
+
+    $( "#add_manually" ).on( "submit", { e: "event" }, pron_add_manually );
+
+    $( "#file" ).on( "change", function() {
+        $( "#submit" ).click();
+    });
 
 
 	$( "#dictionary" ).mousedown(function() {
@@ -363,8 +375,6 @@ $(window).on( "load", function() {
 		if ($( "#n_v_a" )) $( "#n_v_a" ).remove();
 	})
 
-
-	$( "#sound" ).click(search_pron2);
 
 
     // If nothing has been found

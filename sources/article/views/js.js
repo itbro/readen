@@ -10,12 +10,6 @@ $(window).on( "load", function() {
 
     openDic_width();
 
-    $( "#sound" ).contextmenu(function(event) {
-        $( "#file_name" ).val( document.getElementById("editor_frame").contentWindow.document.getSelection() );
-        $( "#file" ).click();
-        event.preventDefault();
-    });
-
     $( "#add_manually" ).on( "submit", { e: "event" }, pron_add_manually );
 
     $( "#file" ).on( "change", function() {

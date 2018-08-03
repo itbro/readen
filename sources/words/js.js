@@ -214,8 +214,6 @@ $(function() {
 				pron_change(word_to_listen);
             else if ($( "#sound" ).attr( "title" ) == "Delete the word!")
 				pron_delete(word_to_listen);
-			else
-                pron_add_manual(word_to_listen);
 
 			$( "#sound" ).html( "♫" );
 			$( "#sound" ).hide();

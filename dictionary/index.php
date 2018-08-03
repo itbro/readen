@@ -156,6 +156,13 @@
                 document.getElementById("dictionary").style.marginTop =
                 document.getElementById("dictionary").getBoundingClientRect().top +
                 document.getElementById("extra_fields").offsetHeight +
-                document.getElementById("content").offsetHeight - extra_fields_indent + "px";</script>
+                document.getElementById("content").offsetHeight - extra_fields_indent + "px";
+        </script>
+
+        <form action="/ajax/add_manually.php" method="post" id="add_manually" enctype="multipart/form-data" style="display:none;">
+            <input type="text" name="file_name" value="" id="file_name">
+            <input type="file" name="file" id="file">
+          <input type="submit" value="" id="submit">
+        </form>
     </body>
 </html>

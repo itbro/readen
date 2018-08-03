@@ -493,6 +493,10 @@ function pron_link_oninput()
 
 function pron_link_onclick()
 {
+    // Open a window to add a pronunciation manually
+    $( "#file_name" ).val( document.getElementById("editor_frame").contentWindow.document.getSelection() );
+    $( "#file" ).click();
+
 	$( "#sound" ).hide();
 	$( "#pron_link" ).hide();
 	$( "#pron_link" ).val( "" );
@@ -613,8 +617,6 @@ function sound()
             pron_change(word);
         else if ($( "#sound" ).prop( "title" ) == "Delete the word!")
             pron_delete(word);
-        else
-            pron_add_manual(word);
 
 		$( "#meanpron" ).hide();
 		$( "#sound" ).html( "♫" );
@@ -685,6 +687,43 @@ function sound()
 	}
 }
 
+function sound_dictionary()
+{
+    $( this ).hide();
+    $("#pron_link").css( "top", $("#sound").css( "top" ) );
+    $("#pron_link").css( "left", $("#sound").css( "left" ) );
+    $("#pron_link").show();
+
+    // If #pron_link gets beyond the Dictionary borders
+    if (document.getElementById("pron_link").getBoundingClientRect().left +
+    $("#pron_link").outerWidth() >
+    document.getElementById("dictionary").getBoundingClientRect().left +
+    $("#dictionary").outerWidth()) {
+        $("#pron_link").css( "left",
+        document.getElementById("dictionary").getBoundingClientRect().left +
+        $("#dictionary").outerWidth() - $("#pron_link").outerWidth() - 10 + "px" );
+    }
+
+    $("#pron_word").val( document.getSelection() );
+
+    // Open (or not) a dictionary
+    // to find out the pronunciation of word selected
+    // (see settings.js: var dicPron)
+    if (dicPron == 0)
+        return false;
+    else if (dicPron == 1)
+        window.open('http://dictionary.cambridge.org/dictionary/english/' +
+        document.getSelection(), "_blank", extra_dic_param());
+    else if (dicPron == 2)
+        window.open('http://www.oxfordlearnersdictionaries.com/definition/english/' +
+        document.getSelection(), "_blank", extra_dic_param());
+    else if (dicPron == 3)
+        window.open('http://www.macmillandictionary.com/pronunciation/british/' +
+        document.getSelection(), "_blank", extra_dic_param());
+    else
+        return false;
+}
+
 function meanPronPos()
 {
 	if ($( "#meanpron" ).css( "display" ) == "block") {
@@ -714,13 +753,6 @@ function pron_add(str)
 {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/ajax/add.php?q=" + str, true);
-    xmlhttp.send();
-}
-
-function pron_add_manual(str)
-{
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "/ajax/add_manually.php?q=" + str, true);
     xmlhttp.send();
 }
 
@@ -1486,28 +1518,6 @@ function if_Macmillan_clicked() {
         window.open("http://www.macmillandictionary.com/", "_blank", extra_dic_param());
         return false;
     }
-}
-
-function search_pron2()
-{
-    $( this ).hide();
-    $("#pron_link").css( "top", $("#sound").css( "top" ) );
-    $("#pron_link").css( "left", $("#sound").css( "left" ) );
-    $("#pron_link").show();
-
-    // на тот случай, если pron_link выходит за границы словаря
-    if (document.getElementById("pron_link").getBoundingClientRect().left +
-    $("#pron_link").outerWidth() >
-    document.getElementById("dictionary").getBoundingClientRect().left +
-    $("#dictionary").outerWidth()) {
-        $("#pron_link").css( "left",
-        document.getElementById("dictionary").getBoundingClientRect().left +
-        $("#dictionary").outerWidth() - $("#pron_link").outerWidth() - 10 + "px" );
-    }
-
-    $("#pron_word").val( document.getSelection() );
-    window.open("http://dictionary.cambridge.org/dictionary/english/" +
-    document.getSelection(), "_blank", extra_dic_param());
 }
 
 function if_no_word_found()
