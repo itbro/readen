@@ -6,11 +6,13 @@ If you like reading foreign texts the app may be useful for you.
 
 The app consists of 2 parts: the Dictionary and the Sources.
 
-### The Dictionary
+### What it looks like
+
+#### The Dictionary
 ![Alt text](http://readen.ru/pres_dic_1.gif "Example of usage")
 
 
-### The Sources (Lyrics)
+#### The Sources (Lyrics)
 ![Alt text](http://readen.ru/sources_lyrics_1.png "Example of usage")
 
 
