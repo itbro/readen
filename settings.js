@@ -243,4 +243,4 @@ var foreignToNative_Shift_from_2 = ",??", foreignToNative_Shift_to_2 = "?";
 var foreignToNative_Shift_from_3 = "Э\"\"", foreignToNative_Shift_to_3 = "\"";
 var foreignToNative_Shift_from_4 = "жжж", foreignToNative_Shift_to_4 = ";";
 var foreignToNative_Shift_from_5 = "ЖЖЖ", foreignToNative_Shift_to_5 = ":";
-var foreignToNative_Shift_from_6 = "....", foreignToNative_Shift_to_6 = "/";
+var foreignToNative_Shift_from_6 = "....", foreignToNative_Shift_to_6 = "/ ";
