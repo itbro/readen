@@ -145,7 +145,7 @@ $(window).on( "load", function() {
     		$( "#falseForm" ).position().left = $( this ).css( "left" ) + "px";
     		$( "#falseForm" ).select();
     		word_to_listen2 = '';
-    		editIfAbove(this.id,"1");
+    		editIfAbove(this.id, "1");
         });
 	});
 

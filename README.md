@@ -10,6 +10,10 @@ The app consists of 2 parts: the Dictionary and the Sources.
 ![Alt text](http://readen.ru/pres_dic_1.gif "Example of usage")
 
 
+### The Sources (Lyrics)
+![Alt text](http://readen.ru/sources_lyrics_1.png "Example of usage")
+
+
 ## System Requirements
 Apache/2.4  
 PHP 7.2  

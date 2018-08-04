@@ -95,7 +95,6 @@
 
     $connection->exec("CREATE TABLE `lyrics` (
       `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      `performer_song` varchar(999) NOT NULL,
       `text` text NOT NULL,
       `words` text NOT NULL,
       `page_scroll` int(11) NOT NULL,
