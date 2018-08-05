@@ -174,30 +174,6 @@ $(function() {
                 });
 
 		});
-
-		$( ".remember_meaning" ).each(function() {
-            $( this )
-                .on( "input", function() {
-                    var pos = carPos(this);
-                    this.value = foreignToNative(this.value, pos);
-                    this.selectionStart = this.selectionEnd = pos;
-
-                    how_many_words_words();
-                    show_red_num_words(red_num);
-                })
-                .keydown(function(event) {
-                    if (event.keyCode == 16) shift_key = "Shift";
-                })
-                .click(function() {
-                    $( "#sound" ).html( "♫" );
-                    $( "#sound" ).attr( "title", "" );
-                    $( "#sound" ).hide();
-                    $( "#pron_link" ).hide();
-                    if ($( "#n_v_a" )[0])
-                        $( "#n_v_a" ).remove();
-                    word_to_listen = "";
-                });
-        });
 	});
 
 	$( "#red_words_num", parent.document ).click(function() {

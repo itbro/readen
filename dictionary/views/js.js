@@ -2,7 +2,7 @@ $( window ).on( "beforeunload", function() {
     delete_cookie("source_from_add");
 });
 
-$(window).on( "load", function() {
+$( window ).on( "load", function() {
 
 	$( window ).scrollTop() > 4 ?
     $( "#www" ).css( "boxShadow", "0 7px 12px -10px #777" ) :

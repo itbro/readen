@@ -121,6 +121,105 @@ function show_red_num(red_num)
 	$( "#red_words_num" ).html( red_num );
 }
 
+function find_word_right(word)
+{
+    // Searches for the word selected among the Words
+	var word_test = word.replace(/\.|\|/g, "");
+	if (word_test != '' &&
+        word_test != ' ' &&
+        word_test != 'ing' &&
+        word_test != 'ed' &&
+        word_test.length != 1) {
+		word = word.toLowerCase();
+        var occurrences = [];
+        var oc = 0;
+
+        // How many occurances are there in the Words
+        var all_lels_s = $( "#frame_words" ).contents().find( ".remember_lel" );
+		all_lels_s.each(function(index) {
+			if ($( this ).val().toLowerCase().search(word) != -1) {
+				occurrences[oc] = index;
+				oc++;
+				$( this ).css( "font-weight", "bold" );
+			} else if ($( this ).css( "color" ) != color_6) {
+				$( this ).css( "font-weight", "normal" );
+			}
+		});
+
+        // Moves scrolling infront of the toppest word found in the Words
+		if (occurrences.length > 0) {
+			var min = Math.min.apply(null, occurrences);
+			words_scroll_pos().scrollTop = all_lels_s.eq( min ).offset().top;
+			$( "#occ_num" ).css( "font-weight", "bold" );
+			$( "#occ_num" ).html( occurrences.length );
+		} else
+            $( "#occ_num" ).html( "" );
+	}
+}
+
+function how_many_words()
+{
+    // For the Words
+    // Counts the number of words overall added to the Words
+    // when they added from a source
+	new_words_num = 0;
+	$( "#frame_words" ).contents().find( ".remember_lel" ).each(function() {
+		$( this ).val() != "" ? new_words_num++ : "";
+    });
+	$( "#new_words_num" ).html( "Overall: " + new_words_num + "/" );
+}
+
+function add_empty_field_if_needed(slovo)
+{
+    // For the Words
+    // Are there empty rows (empty_field_num)?
+	var empty_field_num = 0;
+	var all_lels_q = $( "#frame_words" ).contents().find( ".remember_lel" );
+    all_lels_q.each(function() {
+        if ($( this ).val() == "") empty_field_num++;
+    });
+
+	if (empty_field_num == 0) addFields(1);
+
+	all_lels_q = $( "#frame_words" ).contents().find( ".remember_lel" );
+    all_lels_q.each(function() {
+
+		if ($( this ).val() == "") {
+			$( this ).val( slovo );
+			// Moves the slider of scrolling in fromt of the word added
+			if ($( "#frame_words" ).contents().find( "#new_word_field" ).html() == "")
+				words_scroll_pos().scrollTop = $( this ).offset().top -
+                $( "#frame_words" ).outerHeight() / 1.5;
+			else {
+                // If the new row added happens to be below
+				// the first empty row
+				if ($( "#frame_words" ).contents().find( "#new_word_field" ).html() >
+                $( this ).offset().top) {
+					words_scroll_pos().scrollTop = $( this ).offset().top -
+                    $( "#frame_words" ).outerHeight() / 1.5;
+				} else {
+					words_scroll_pos().scrollTop =
+                    $( "#frame_words" ).contents().find( "#new_word_field" ).html();
+					$( "#frame_words" ).contents().find( "#new_word_field" ).html( "" );
+				}
+			}
+			return false;
+		}
+    });
+}
+
+function how_many_words_words() {
+    // For the Words
+    // Counts the number of words overall in the Words
+    // when they added by typing them in the Words itself or
+    // when they removed
+	new_words_num = 0;
+	$(".remember_lel").each(function() {
+        $( this ).val() != "" ? new_words_num++ : "";
+    });
+	$( "#new_words_num", parent.document ).html( "Overall: " + new_words_num + "/" );
+}
+
 function show_red_num_words(red_num)
 {
     // For the Words
@@ -144,6 +243,46 @@ function show_red_num_words(red_num)
 
 	$( "#red_words_num", parent.document ).html( red_num );
 }
+
+//////////////////////////////////////////////////////////////////////////////
+
+function how_many_words_words_temprary() {
+    // For the Words
+    // Counts the number of words overall in the Words
+    // when they added by typing them in the Words itself or
+    // when they removed
+	new_words_num = 0;
+	$( "#frame_words").contents().find(".remember_lel").each(function() {
+        $( this ).val() != "" ? new_words_num++ : "";
+    });
+	$( "#new_words_num").html( "Overall: " + new_words_num + "/" );
+}
+
+function show_red_num_words_temprary(red_num)
+{
+    // For the Words
+    // Counts how many words in the Words have no translations
+    // when a word is typed in the Words themselves
+	all_lels_red = $( "#frame_words").contents().find( ".remember_lel" );
+	all_meanings_red = $( "#frame_words").contents().find( ".remember_meaning" );
+	all_lels_red.each(function(index) {
+		if ($ ( this ).val() != "" && all_meanings_red.eq( index ).val() == "")
+			red_num++;
+		else
+            red_num = red_num;
+	});
+	if (red_num == 0) {
+        // Sets the color of word when the word is typed in the field
+		$( "#red_words_num").css ( "color",
+        $( "#new_red_words").css( "color" ));
+		$( "#red_words_num").css( "cursor", "text" );
+	} else
+		$( "#red_words_num").css( "cursor", "pointer" );
+
+	$( "#red_words_num").html( red_num );
+}
+
+//////////////////////////////////////////////////////////////////////////////
 
 function AddPage_onclick()
 {
@@ -774,105 +913,6 @@ function pron_add_manually(e)
                 that.replaceWith(json);
             }
         }
-    });
-}
-
-function find_word_right(word)
-{
-    // Searches for the word selected among the Words
-	var word_test = word.replace(/\.|\|/g, "");
-	if (word_test != '' &&
-        word_test != ' ' &&
-        word_test != 'ing' &&
-        word_test != 'ed' &&
-        word_test.length != 1) {
-		word = word.toLowerCase();
-        var occurrences = [];
-        var oc = 0;
-
-        // How many occurances are there in the Words
-        var all_lels_s = $( "#frame_words" ).contents().find( ".remember_lel" );
-		all_lels_s.each(function(index) {
-			if ($( this ).val().toLowerCase().search(word) != -1) {
-				occurrences[oc] = index;
-				oc++;
-				$( this ).css( "font-weight", "bold" );
-			} else if ($( this ).css( "color" ) != color_6) {
-				$( this ).css( "font-weight", "normal" );
-			}
-		});
-
-        // Moves scrolling infront of the toppest word found in the Words
-		if (occurrences.length > 0) {
-			var min = Math.min.apply(null, occurrences);
-			words_scroll_pos().scrollTop = all_lels_s.eq( min ).offset().top;
-			$( "#occ_num" ).css( "font-weight", "bold" );
-			$( "#occ_num" ).html( occurrences.length );
-		} else
-            $( "#occ_num" ).html( "" );
-	}
-}
-
-function how_many_words()
-{
-    // For the Words
-    // Counts the number of words overall added to the Words
-    // when they added from a source
-	new_words_num = 0;
-	$( "#frame_words" ).contents().find( ".remember_lel" ).each(function() {
-		$( this ).val() != "" ? new_words_num++ : "";
-    });
-	$( "#new_words_num" ).html( "Overall: " + new_words_num + "/" );
-}
-
-function how_many_words_words() {
-    // For the Words
-    // Counts the number of words overall in the Words
-    // when they added by typing them in the Words itself or
-    // when they removed
-	new_words_num = 0;
-	$(".remember_lel").each(function() {
-        $( this ).val() != "" ? new_words_num++ : "";
-    });
-	$( "#new_words_num", parent.document ).html( "Overall: " + new_words_num + "/" );
-}
-
-function add_empty_field_if_needed(slovo)
-{
-    // For the Words
-    // Are there empty rows (empty_field_num)?
-	var empty_field_num = 0;
-	var all_lels_q = $( "#frame_words" ).contents().find( ".remember_lel" );
-    all_lels_q.each(function() {
-        if ($( this ).val() == "") empty_field_num++;
-    });
-
-	if (empty_field_num == 0) addFields(1);
-
-	all_lels_q = $( "#frame_words" ).contents().find( ".remember_lel" );
-    all_lels_q.each(function() {
-
-		if ($( this ).val() == "") {
-			$( this ).val( slovo );
-			// Moves the slider of scrolling in fromt of the word added
-			if ($( "#frame_words" ).contents().find( "#new_word_field" ).html() == "")
-				words_scroll_pos().scrollTop = $( this ).offset().top -
-                $( "#frame_words" ).outerHeight() / 1.5;
-			else {
-                // If the new row added happens to be below
-				// the first empty row
-				if ($( "#frame_words" ).contents().find( "#new_word_field" ).html() >
-                $( this ).offset().top) {
-					words_scroll_pos().scrollTop = $( this ).offset().top -
-                    $( "#frame_words" ).outerHeight() / 1.5;
-				} else {
-					words_scroll_pos().scrollTop =
-                    $( "#frame_words" ).contents().find( "#new_word_field" ).html();
-					$( "#frame_words" ).contents().find( "#new_word_field" ).html( "" );
-				}
-			}
-			return false;
-		}
     });
 }
 
@@ -1646,9 +1686,9 @@ function nativeToForeign(text, pos)
 		shift_key = "";
 	} else {
 		if (text.substring(pos-1, pos) == ",") {
-            // если введён этот знак, а перед этим
+            // If the symbol is typed and
 			if (shift_key == "Shift") {
-                // была нажата клавиша Shift
+                // the key Shift has been pressed before thet
 				shift_key = "";
 				text = text.substring(0, pos-1) + "?" + text.substring(pos, text.length);
 			} else
@@ -1688,38 +1728,28 @@ function foreignToNative(text, pos)
 			if (shift_key == "Shift") {
                 // If the key Shift has been pressed
 				shift_key = "";
-				text = text.substring(0, pos-1) + "," +
-                text.substring(pos, text.length);
+				text = text.substring(0, pos-1) + "," + text.substring(pos, text.length);
 			} else
 				text = text.substring(0, pos-1) +
-                foreign_native[text.substring(pos-1, pos)] +
-                text.substring(pos, text.length);
-		}
-		else if (text.substring(pos-1, pos) == "&") {
+                foreign_native[text.substring(pos-1, pos)] + text.substring(pos, text.length);
+		} else if (text.substring(pos-1, pos) == "&") {
 			if (shift_key == "Shift") {
 				shift_key = "";
-				text = text.substring(0, pos-1) + "?" +
-                text.substring(pos, text.length);
+				text = text.substring(0, pos-1) + "?" + text.substring(pos, text.length);
 			} else
 				text = text.substring(0, pos-1) +
-                foreign_native[text.substring(pos-1, pos)] +
-                text.substring(pos, text.length);
-		}
-		else if (text.substring(pos-1, pos) == "\"") {
+                foreign_native[text.substring(pos-1, pos)] + text.substring(pos, text.length);
+		} else if (text.substring(pos-1, pos) == "\"") {
 			if (shift_key == "Shift") {
 				shift_key = "";
-				text = text.substring(0, pos-1) + "Э" +
-                text.substring(pos, text.length);
+				text = text.substring(0, pos-1) + "Э" + text.substring(pos, text.length);
 			} else
 				text = text.substring(0, pos-1) +
-                foreign_native[text.substring(pos-1, pos)] +
-                text.substring(pos, text.length);
-		}
-		else {
+                foreign_native[text.substring(pos-1, pos)] + text.substring(pos, text.length);
+		} else {
 			shift_key = "";
 			text = text.substring(0, pos-1) +
-            foreign_native[text.substring(pos-1, pos)] +
-            text.substring(pos, text.length);
+            foreign_native[text.substring(pos-1, pos)] + text.substring(pos, text.length);
 		}
 	}
     // In the field "native" if typing in Foreign language
@@ -1736,6 +1766,32 @@ function foreignToNative(text, pos)
         ).replace(
         foreignToNative_Shift_from_6, foreignToNative_Shift_to_6
         );
+}
+
+function trnslt() {
+    // Translates from foregn language to native language and vice versa
+    $( this )
+        .on( "input", function() {
+            var pos = carPos(this);
+
+            if (
+                $( this ).is( "#newword_lel") ||
+                $( this ).is( "#newword_example") ||
+                $( this ).is( "#newword_label") ||
+                $( this ).is( "#source_from_new_add") ||
+                $( this ).is( ".result_lel") ||
+                $( this ).is( ".result_label" ) ||
+                $( this ).is( ".result_source" )
+            )
+                this.value = nativeToForeign(this.value, pos);
+            else
+                this.value = foreignToNative(this.value, pos);
+
+            this.selectionStart = this.selectionEnd = pos;
+        })
+        .keydown(function(event) {
+            if (event.keyCode == 16) shift_key = "Shift";
+        });
 }
 
 function restIfAbove(thisId, youFrom)
@@ -1820,32 +1876,6 @@ function edit_example_buttons()
             remove_tags(document.getElementById(bId)); return false;
         });
     });
-}
-
-function trnslt() {
-    // Translates from foregn language to native language and vice versa
-    $( this )
-        .on( "input", function() {
-            var pos = carPos(this);
-
-            if (
-                $( this ).is( "#newword_lel") ||
-                $( this ).is( "#newword_example") ||
-                $( this ).is( "#newword_label") ||
-                $( this ).is( "#source_from_new_add") ||
-                $( this ).is( ".result_lel") ||
-                $( this ).is( ".result_label" ) ||
-                $( this ).is( ".result_source" )
-            )
-                this.value = nativeToForeign(this.value, pos);
-            else
-                this.value = foreignToNative(this.value, pos);
-
-            this.selectionStart = this.selectionEnd = pos;
-        })
-        .keydown(function(event) {
-            if (event.keyCode == 16) shift_key = "Shift";
-        });
 }
 
 function add_source_if_clicked() {
