@@ -28,4 +28,6 @@ Mozilla Firefox / Google Chrome / Opera / Яндекс.Браузер (the lates
 2. Run the file _setup.php_ on your browser (go to http://localhost/setup.php).  
    If everything go right the message "Well done! :)" will appear on the screen.  
 
-Now, go to http://localhost/ or http://localhost/dictionary/ on you browser.
+Now, you can use the Sources (http://localhost/) and/or the Dictionary (http://localhost/dictionary/).
+
+Enjoy yourself!
