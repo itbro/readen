@@ -34,7 +34,8 @@
         $transliteration = UNUSED;
 
         // Remove unreadable symbols from Cambridge dictionary
-        $foreign = preg_replace("/&#8203;|вЂ‹/", "", $_GET['search_lel']);
+        $foreign = urldecode($_GET['search_lel']);
+        $foreign = preg_replace("/&#8203;|вЂ‹/", "", $foreign);
         $foreign = preg_replace('/[ ]{2,}/', ' ', $foreign);
         $foreign = trim($foreign);
         $native = trim($_GET['search_meaning']);

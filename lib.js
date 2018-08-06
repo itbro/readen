@@ -482,7 +482,7 @@ function searchInDic_oninput(lel, source)
 {
     // Interaction with the Dictionary
 	window.open("/dictionary/?" +
-    "search_lel=" + escape(lel.trim()) +
+    "search_lel=" + escape(encodeURI(lel.trim())) +
     "&search_meaning=" +
     "&search_comment=" +
     "&search_example=" +
