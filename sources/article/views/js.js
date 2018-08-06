@@ -92,35 +92,9 @@ $(window).on( "load", function() {
 	window.onscroll = function() { if_window_scrolled(); }
 
 
-
-
-    all_meanings = $( "#frame_words").contents().find( ".remember_meaning" );
-    all_meanings.each(function() {
-        $( this )
-            .on( "input", function() {
-                var pos = carPos(this);
-                this.value = foreignToNative(this.value, pos);
-                this.selectionStart = this.selectionEnd = pos;
-
-                how_many_words_words_temprary();
-                show_red_num_words_temprary(red_num);
-            })
-            .keydown(function(event) {
-                if (event.keyCode == 16) shift_key = "Shift";
-            })
-            .click(function() {
-                $( "#sound" ).html( "♫" );
-                $( "#sound" ).attr( "title", "" );
-                $( "#sound" ).hide();
-                $( "#pron_link" ).hide();
-                if ($( "#n_v_a" )[0])
-                    $( "#n_v_a" ).remove();
-                word_to_listen = "";
-            });
-    });
-
-
-
-
-
+    // The Words
+    trnslt_words();
+    if_words_sound_click_on();
+    if_words_pron_link_click_on();
+    if_words_red_words_click_on();
 });

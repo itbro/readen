@@ -77,7 +77,7 @@
                     <div id='words_to_remember'>
                         <div id='fields'><?= $row_words ?></div>
                     </div>
-                    <iframe src='sources/words/' frameborder='0' id='frame_words'></iframe>
+                    <iframe src='sources/words/' frameborder='0' id='frame_words' name="frame_words"></iframe>
                     <div id='new_red_words'>
                         <div id='new_words_num'></div>
                         <div id='red_words_num'></div>

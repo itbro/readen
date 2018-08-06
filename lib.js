@@ -252,7 +252,7 @@ function how_many_words_words_temprary() {
     // when they added by typing them in the Words itself or
     // when they removed
 	new_words_num = 0;
-	$( "#frame_words").contents().find(".remember_lel").each(function() {
+	$( "#frame_words").contents().find( ".remember_lel" ).each(function() {
         $( this ).val() != "" ? new_words_num++ : "";
     });
 	$( "#new_words_num").html( "Overall: " + new_words_num + "/" );
@@ -372,8 +372,8 @@ function CleanLink()
 {
     // Removes highlighting in words
 	$( window ).scrollTop( self.pageYOffset );
-	$( "#enter_text" ).val( $( "#editor_frame" ).contents().find( "#text" ).html().replace(/<red>|<\/red>/g, "") );
-	$( "#editor_frame" ).contents().find( "#text" ).html( $( "#enter_text" ).val() );
+	$( "#enter_text" ).val( $( "#editor_frame" ).contents().find( "#text" ).html().replace(/<red>|<\/red>/g, "").replace(/<br>/g, "\r\n") );
+	$( "#editor_frame" ).contents().find( "#text" ).html( $( "#enter_text" ).val().replace(/\n/g, "<br>") );
 }
 
 function SaveLink_onclick()
@@ -688,7 +688,6 @@ function four_buttons()
     });
 }
 
-
 function word_meaning()
 {
     // Searches for a word selected
@@ -932,28 +931,28 @@ function param(topMenuSubMenu_from_left)
 }
 
 function make_them_red() {
-	all_meanings_red = $( ".remember_meaning" );
-	$( ".remember_lel" ).each(function(index) {
+	all_meanings_red = $( "#frame_words").contents().find( ".remember_meaning" );
+	$( "#frame_words").contents().find( ".remember_lel" ).each(function(index) {
         if ($( this ).val() != "" && all_meanings_red.eq( index ).val() == "") {
 			$( this ).css({
                 "color": color_6,
                 "font-weight": "bold"
             });
-			$( "#red_words_num", parent.document ).css( "color", color_6 );
+			$( "#red_words_num").css( "color", color_6 );
 		}
     });
 }
 
 function make_them_black() {
     // In the Words, makes rew words back black
-	all_meanings_red = $( ".remember_meaning" );
-	$( ".remember_lel" ).each(function(index) {
+	all_meanings_red = $( "#frame_words").contents().find( ".remember_meaning" );
+	$( "#frame_words").contents().find( ".remember_lel" ).each(function(index) {
         $( this ).css({
             "color": "#555",
             "font-weight": "normal"
         });
-		$( "#red_words_num", parent.document ).css( "color",
-        $( "#new_red_words", parent.document ).css( "color" ) );
+		$( "#red_words_num").css( "color",
+        $( "#new_red_words").css( "color" ) );
 	});
 }
 
@@ -1269,49 +1268,53 @@ function listen_words(str, event)
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
 				if (str.search(">>") != -1) {
-					$( "#sound" ).html( "#" );
-					$( "#sound" ).attr( "title", "Change the word!" );
+					$( "#frame_words").contents().find( "#sound" ).html( "#" );
+					$( "#frame_words").contents().find( "#sound" ).attr( "title", "Change the word!" );
 				} else if (str.search(">delete>") != -1) {
-					$( "#sound" ).html( "#" );
-					$( "#sound" ).attr( "title", "Delete the word!" );
-				} else $( "#sound" ).attr( "title", "" );
+					$( "#frame_words").contents().find( "#sound" ).html( "#" );
+					$( "#frame_words").contents().find( "#sound" ).attr( "title", "Delete the word!" );
+				} else $( "#frame_words").contents().find( "#sound" ).attr( "title", "" );
 
-				$( "#pron_word" ).val( str );
-				$( "#sound" ).show();
-				$( "#sound" ).css( "top", event.pageY - 25 + "px" );
-				$( "#sound" ).css( "left", event.clientX + 5 + "px" );
+				$( "#frame_words").contents().find( "#pron_word" ).val( str );
+				$( "#frame_words").contents().find( "#sound" ).show();
+				$( "#frame_words").contents().find( "#sound" ).css( "top", event.pageY - 25 + "px" );
+				$( "#frame_words").contents().find( "#sound" ).css( "left", event.clientX + 5 + "px" );
 
 				// If the Pronunciation button is beyond #fields
                 // then back it within #fields
-				if (document.getElementById("sound").getBoundingClientRect().top <
-                document.getElementById("fields").getBoundingClientRect().top) {
-					$( "#sound" ).css( "top",
-                    document.getElementById("fields").getBoundingClientRect().top + "px" );
+				if (frames["frame_words"].document.getElementById("sound").getBoundingClientRect().top <
+                frames["frame_words"].document.getElementById("fields").getBoundingClientRect().top) {
+					$( "#frame_words").contents().find( "#sound" ).css( "top",
+                    frames["frame_words"].document.getElementById("fields").getBoundingClientRect().top + "px" );
 				}
 
-				if (document.getElementById("sound").getBoundingClientRect().top +
+				if (frames["frame_words"].document.getElementById("sound").getBoundingClientRect().top +
                 $( "#sound" ).outerHeight() > $( "#frame_words", parent.document ).outerHeight()) {
-					$( "#sound" ).css( "top", $( "#fields" ).prop( "scrollHeight" ) -
-                    $( "#sound" ).outerHeight() - 5 + "px" );
+					$( "#frame_words").contents().find( "#sound" ).css( "top",
+                    $( "#frame_words").contents().find( "#fields" ).prop( "scrollHeight" ) -
+                    $( "#frame_words").contents().find( "#sound" ).outerHeight() - 5 + "px" );
 				}
-				if (document.getElementById("sound").getBoundingClientRect().left <
-                document.getElementById("fields").getBoundingClientRect().left) {
-					$( "#sound" ).css( "left",
-                    document.getElementById("fields").getBoundingClientRect().left + 5 + "px" );
+				if (frames["frame_words"].document.getElementById("sound").getBoundingClientRect().left <
+                frames["frame_words"].document.getElementById("fields").getBoundingClientRect().left) {
+					$( "#frame_words").contents().find( "#sound" ).css( "left",
+                    frames["frame_words"].document.getElementById("fields").getBoundingClientRect().left + 5 + "px" );
 				}
-                if (document.getElementById("sound").getBoundingClientRect().left >
-                $( "#fields" ).outerWidth()) {
-                    $( "#sound" ).css( "left", $( "#fields" ).outerWidth() -
-                    $( "#sound" ).outerWidth() - 5 + "px" );
+                if (frames["frame_words"].document.getElementById("sound").getBoundingClientRect().left >
+                $( "#frame_words").contents().find( "#fields" ).outerWidth()) {
+                    $( "#frame_words").contents().find( "#sound" ).css( "left",
+                    $( "#frame_words").contents().find( "#fields" ).outerWidth() -
+                    $( "#frame_words").contents().find( "#sound" ).outerWidth() - 5 + "px" );
                 }
 
 				if (xmlhttp.responseText != 0) {
-                    if ($( "#n_v_a" )[0])
-                        $( "#n_v_a" ).remove();
-                    $( "body" ).append( n_v_a );
-					$( "#n_v_a" ).css( "top", $( "#sound" ).css( "top" ) );
-					$( "#n_v_a" ).css( "left", $( "#sound" ).css( "left" ) );
-					$( "#sound" ).hide();
+                    if ($( "#frame_words").contents().find( "#n_v_a" )[0])
+                        $( "#frame_words").contents().find( "#n_v_a" ).remove();
+                    $( "#frame_words").contents().find( "body" ).append( n_v_a );
+					$( "#frame_words").contents().find( "#n_v_a" ).css( "top",
+                    $( "#frame_words").contents().find( "#sound" ).css( "top" ) );
+					$( "#frame_words").contents().find( "#n_v_a" ).css( "left",
+                    $( "#frame_words").contents().find( "#sound" ).css( "left" ) );
+					$( "#frame_words").contents().find( "#sound" ).hide();
 					if (xmlhttp.responseText.search("[+]") == -1) {
                         // If there is 1 word
 						if (xmlhttp.responseText.search("[=]") == -1) {
@@ -1350,7 +1353,7 @@ function listen_words(str, event)
                             }
                         });
                     }
-					$( "#n_v_a" ).html( words_to_listen );
+					$( "#frame_words").contents().find( "#n_v_a" ).html( words_to_listen );
 					words_to_listen = '';
 				}
             }
@@ -1358,6 +1361,90 @@ function listen_words(str, event)
 		xmlhttp.open("GET", "/ajax/listen.php?q=" + str, true);
 		xmlhttp.send();
 	}
+}
+
+function if_words_sound_click_on()
+{
+    $( "#frame_words").contents().find( "#sound" ).click(function() {
+        if ($( "#frame_words").contents().find( "#sound" ).html() == "#") {
+            if ($( "#frame_words").contents().find( "#sound" ).attr( "title" ) == "Change the word!")
+                pron_change(word_to_listen);
+            else if ($( "#frame_words").contents().find( "#sound" ).attr( "title" ) == "Delete the word!")
+                pron_delete(word_to_listen);
+
+            $( "#frame_words").contents().find( "#sound" ).html( "♫" );
+            $( "#frame_words").contents().find( "#sound" ).hide();
+        } else {
+            $( this ).hide();
+            $( "#frame_words").contents().find( "#pron_link" ).css( "top",
+            $( "#frame_words").contents().find( "#sound" ).css( "top" ) );
+            $( "#frame_words").contents().find( "#pron_link" ).css( "left",
+            $( "#frame_words").contents().find( "#sound" ).css( "left" ) );
+            $( "#frame_words").contents().find( "#pron_link" ).show();
+
+            // If #pron_link happens to be beyond the Dictionary boundaries
+            if (frames["frame_words"].document.getElementById('pron_link').getBoundingClientRect().left +
+            $( "#pron_link" ).outerWidth() >
+            frames["frame_words"].document.getElementById('fields').getBoundingClientRect().left +
+            $( "#fields" ).outerWidth()) {
+                $( "#pron_link" ).css( "left",
+                frames["frame_words"].document.getElementById('fields').getBoundingClientRect().left +
+                $( "#fields" ).outerWidth() - $( "#pron_link" ).outerWidth() - 10 + "px" );
+            }
+
+            $( "#frame_words").contents().find( "#pron_link" ).focus();
+
+            $( "#frame_words").contents().find( "#pron_word" ).val( word_to_listen );
+
+            // Open (or not) a dictionary
+            // to find out the pronunciation of word selected
+            // (see settings.js: var dicPron)
+            if (dicPron == 0)
+                return false;
+            else if (dicPron == 1)
+                window.open('http://dictionary.cambridge.org/dictionary/english/' +
+                word_to_listen, "_blank", param(document.getElementById("topMenuSubMenu").getBoundingClientRect().left));
+            else if (dicPron == 2)
+                window.open('http://www.oxfordlearnersdictionaries.com/definition/english/' +
+                word_to_listen, "_blank", param(document.getElementById("topMenuSubMenu").getBoundingClientRect().left));
+            else if (dicPron == 3)
+                window.open('http://www.macmillandictionary.com/pronunciation/british/' +
+                word_to_listen, "_blank", param(document.getElementById("topMenuSubMenu").getBoundingClientRect().left));
+            else
+                return false;
+        }
+    });
+}
+
+function if_words_pron_link_click_on()
+{
+    $( "#frame_words").contents().find( "#pron_link" )
+    .on( "input", function() {
+        pron_add($( "#frame_words").contents().find( "#pron_link" ).val() + "|"
+        + $( "#frame_words").contents().find( "#pron_word" ).val());
+        $( "#frame_words").contents().find( "#pron_link" ).hide();
+        $( "#frame_words").contents().find( "#pron_link" ).val( "" );
+    })
+    .click(function() {
+        // Open a window to add a pronunciation manually
+        $( "#file_name" ).val( word_to_listen );
+        $( "#file" ).click();
+
+    	$( "#frame_words").contents().find( "#pron_link" ).hide();
+    	$( "#frame_words").contents().find( "#pron_link" ).val( "" );
+    	$( "#frame_words").contents().find( "#pron_word" ).val( "" );
+    });
+}
+
+function if_words_red_words_click_on()
+{
+    $( "#red_words_num").click(function() {
+        if ($( "#red_words_num").html() != 0) {
+            $( this ).css( "color" ) != color_6 ?
+            make_them_red() :
+            make_them_black();
+        }
+    });
 }
 
 function listen_dictionary(str, event)
@@ -1793,6 +1880,210 @@ function trnslt() {
             if (event.keyCode == 16) shift_key = "Shift";
         });
 }
+
+function trnslt_words() {
+
+    all_lels = $( "#frame_words").contents().find( ".remember_lel" );
+    all_meanings = $( "#frame_words").contents().find( ".remember_meaning" );
+
+    // For foreign words
+    all_lels.each(function() {
+        $( this )
+            .on( "input", function() {
+                if ($( this ).val().search(del_this) != -1) {
+                    // Remove the current row
+                    asd = "";
+                    all_lels.each(function(index) {
+                        $( this ).css( "color" ) == color_6 ?
+                        color_red = color_red_value :
+                        color_red = "";
+
+                        $( this ).val().search(del_this) != -1 ?
+                        asd = asd :
+                        asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"" +
+                        $( this ).val().trim() + "\" class=\"remember_lel\"" +
+                        color_red + "><INPUT TYPE=\"TEXT\" VALUE=\"" +
+                        all_meanings.eq( index ).val().trim() + "\" class=\"remember_meaning\">\n";
+                    });
+
+                    all_lels.length - 1 < words_num_rows ?
+                    newFileds = "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_lel\">" +
+                    "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_meaning\">\n" :
+                    newFileds = "";
+
+                    $( "#fields" ).html( asd.replace(/\n+$/, "") + newFileds );
+                } else if (this.value.search(del_empty) != -1) {
+                    // Remove all of the empty rows
+                    // (if the cell on the left is empty)
+                    asd = "";
+                    var count = 0;
+                    all_lels = $( "#frame_words").contents().find( ".remember_lel" );
+                    all_meanings = $( "#frame_words").contents().find( ".remember_meaning" );
+                    all_lels.each(function(index) {
+                        if ($( this ).val() != "" && $( this ).val() != del_empty)
+                            count++;
+
+                        $( this ).css( "color" ) == color_6 ?
+                        color_red = color_red_value :
+                        color_red = "";
+
+                        $( this ).val() == "" || $( this ).val() == del_empty ?
+                        asd = asd :
+                        asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"" +
+                        $( this ).val().replace(del_empty, "").trim() +
+                        "\" class=\"remember_lel\"" + color_red + "><INPUT TYPE=\"TEXT\" VALUE=\"" +
+                        all_meanings.eq( index ).val().trim() + "\" class=\"remember_meaning\">\n";
+                    });
+
+                    // The number of full rows
+                    var lost = count;
+
+                    newFileds = "";
+                    if (lost < words_num_rows) {
+                        all_lels = $( "#frame_words").contents().find( ".remember_lel" );
+
+                        // The number of empty rows that will be added
+                        var nfn = words_num_rows-lost;
+
+                        for (var n = 0; n < nfn; n++) {
+                            newFileds += "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_lel\">" +
+                            "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_meaning\">\n";
+                        }
+                    } else
+                        newFileds = "";
+
+                    $( "#frame_words").contents().find( "#fields" ).html( asd.replace(/\n+$/, "") + newFileds );
+                } else if ($( this ).val().search(add_above) != -1 || $( this ).val().search(add_below) != -1) {
+
+                    asd = "";
+
+                    // If the last row is empty it is removed
+                    if (all_lels.eq( all_lels.length - 1 ).val() == "" &&
+                    all_meanings.eq( all_meanings.length - 1).val() == "") {
+                        all_lels.eq( all_lels.length - 1 ).remove();
+                        all_meanings.eq( all_meanings.length - 1 ).remove();
+                    }
+
+                    all_lels = $( "#frame_words").contents().find( ".remember_lel" );
+                    all_meanings = $( "#frame_words").contents().find( ".remember_meaning" );
+                    all_lels.each(function(index) {
+                        $( this ).css( "color" ) == color_6 ?
+                        color_red = color_red_value :
+                        color_red = "";
+
+                        if ($( this ).val().search(add_above) != -1) {
+                            // Add a row above the current row
+                            if ($( this ).val().search(add_above) != -1) {
+                                asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_lel\">" +
+                                "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_meaning\">\n";
+                                asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                $( this ).val().trim().replace(add_above, "") +
+                                "\" class=\"remember_lel\"" + color_red + "><INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                all_meanings.eq( index ).val().trim()+"\" class=\"remember_meaning\">\n";
+                            } else
+                                asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                $( this ).val().trim() +
+                                "\" class=\"remember_lel\"" + color_red + "><INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                all_meanings.eq( index ).val().trim() +
+                                "\" class=\"remember_meaning\">\n";
+                        } else {
+                            // Add a row below the current row
+                            if ($( this ).val().search(add_below) != -1) {
+                                asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                $( this ).val().trim().replace(add_below, "") +
+                                "\" class=\"remember_lel\"" + color_red + "><INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                all_meanings.eq( index ).val().trim() +
+                                "\" class=\"remember_meaning\">\n";
+                                asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_lel\">" +
+                                "<INPUT TYPE=\"TEXT\" VALUE=\"\" class=\"remember_meaning\">\n";
+                            } else
+                                asd = asd + "<INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                $( this ).val().trim() +
+                                "\" class=\"remember_lel\"" + color_red + "><INPUT TYPE=\"TEXT\" VALUE=\"" +
+                                all_meanings.eq( index ).val().trim() +
+                                "\" class=\"remember_meaning\">\n";
+                        }
+                    });
+
+                    $( "#frame_words").contents().find( "#fields" ).html( asd.replace(/\n+$/, "") );
+
+                    $( "#frame_words").contents().find( "#new_word_field" ).html( $( window ).scrollTop() );
+                }
+                how_many_words_words();
+                show_red_num_words(red_num);
+
+                var pos = carPos(this);
+                this.value = nativeToForeign(this.value, pos);
+                this.selectionStart = this.selectionEnd = pos;
+            })
+            .keydown(function(event) {
+                if (event.keyCode == 16) shift_key = "Shift";
+            })
+            .click(function() {
+                all_lels.each(function() {
+                    if ($( this ).css( "color" ) != color_6) {
+                        $( this ).css( "font-weight", "normal" );
+                    }
+                });
+                $( "#occ_num").html( "" );
+            })
+            .mouseup(function(event) {
+
+                $( "#frame_words").contents().find( "#sound" ).html( "♫" );
+                $( "#frame_words").contents().find( "#sound" ).attr( "title", "" );
+
+                if (thSS != "q") {
+                    thSS = this.selectionStart;
+                    thSE = this.selectionEnd;
+                    if (thSS != thSE) {
+                        if ($( "#frame_words").contents().find( "#n_v_a" )[0])
+                            $( "#frame_words").contents().find( "#n_v_a" ).remove();
+                        word_to_listen = this.value.substring(this.selectionStart, this.selectionEnd);
+                        listen_words(word_to_listen, event);
+                        thSS = thSE = "q";
+                    } else {
+                        $( "#frame_words").contents().find( "#sound" ).hide();
+                        $( "#frame_words").contents().find( "#pron_link" ).hide();
+                        if ($( "#frame_words").contents().find( "#n_v_a" )[0])
+                            $( "#frame_words").contents().find( "#n_v_a" ).remove();
+                    }
+                } else {
+                    $( "#frame_words").contents().find( "#sound" ).hide();
+                    $( "#frame_words").contents().find( "#pron_link" ).hide();
+                    if ($( "#frame_words").contents().find( "#n_v_a" )[0])
+                        $( "#frame_words").contents().find( "#n_v_a" ).remove();
+                    thSS = thSE = 0;
+                }
+            });
+
+    });
+
+    // For translations
+    all_meanings.each(function() {
+        $( this )
+        .on( "input", function() {
+            var pos = carPos(this);
+            this.value = foreignToNative(this.value, pos);
+            this.selectionStart = this.selectionEnd = pos;
+
+            how_many_words_words_temprary();
+            show_red_num_words_temprary(red_num);
+        })
+        .keydown(function(event) {
+            if (event.keyCode == 16) shift_key = "Shift";
+        })
+        .click(function() {
+            $( "#frame_words").contents().find( "#sound" ).html( "♫" );
+            $( "#frame_words").contents().find( "#sound" ).attr( "title", "" );
+            $( "#frame_words").contents().find( "#sound" ).hide();
+            $( "#frame_words").contents().find( "#pron_link" ).hide();
+            if ($( "#frame_words").contents().find( "#n_v_a" )[0])
+            $( "#frame_words").contents().find( "#n_v_a" ).remove();
+            word_to_listen = "";
+        });
+    });
+}
+
 
 function restIfAbove(thisId, youFrom)
 {

@@ -366,7 +366,8 @@ nored {
   text-align: center;
   padding-top: 15px; }
 
-#deleteYes, #deleteNo {
+#deleteYes,
+#deleteNo {
   float: left;
   margin-top: 0;
   width: 30px;
@@ -431,5 +432,3 @@ nored {
   box-sizing: border-box;
   font-size: 12px;
   text-transform: uppercase; }
-
-/*# sourceMappingURL=css.css.map */
