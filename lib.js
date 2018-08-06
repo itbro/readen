@@ -1102,21 +1102,22 @@ function scrolling_back()
 
     $( window ).scrollTop( urlAsArr["scrolling"] );
 
-    $( ".button_save" ).each(function() {
+    var search = $( "input[name='search']" );
+    $( ".edit_button" ).each(function(index) {
         $( this ).click(function() {
-           var acds = this.id.replace("bs", "acds");
-           $( "#" + acds ).val( search_request(
-               urlAsArr['search_lel'],
-               urlAsArr['search_meaning'],
-               urlAsArr['search_comment'],
-               urlAsArr['search_example'],
-               urlAsArr['search_label'],
-               urlAsArr['search_source'],
-               urlAsArr['page'],
-               urlAsArr['source'],
-               $( window ).scrollTop()
-           ));
-       });
+            // index + 1 is because search with index 0 is the Add new word form
+            search.eq( index + 1 ).val( search_request(
+                urlAsArr['search_lel'],
+                urlAsArr['search_meaning'],
+                urlAsArr['search_comment'],
+                urlAsArr['search_example'],
+                urlAsArr['search_label'],
+                urlAsArr['search_source'],
+                urlAsArr['page'],
+                urlAsArr['source'],
+                $( window ).scrollTop()
+            ))
+        });
     });
 }
 
