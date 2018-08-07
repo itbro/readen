@@ -48,7 +48,9 @@ $( window ).on( "load", function() {
 		$( "#pageList" ).change( link_for_pageList );
 
 
-    scrolling_back();
+    // When an entry is edited and the button Change is pressed
+    // the scrolling is back to the initial place
+    $( window ).scrollTop( urlAsArr["scrolling"] );
 
 
 	show_clear_button();
@@ -129,7 +131,6 @@ $( window ).on( "load", function() {
 
 
     var td_results = $('.td_result');
-	var edit_buttons = $('.edit_button');
 	var closeEdits = $('.closeEdit');
 
 	td_results.each(function(index) {
@@ -138,15 +139,53 @@ $( window ).on( "load", function() {
 		closeEdits.eq(index).attr("id", "cl" + index );
 	});
 
-	edit_buttons.each(function() {
+    var search = $( "input[name='search']" );
+    var edit_buttons = $('.edit_button');
+	edit_buttons.each(function(index) {
         // Remove the selection from a word when the Edit button is clicked on
-        $( this).click(function() {
-            $( "#falseForm" ).position().top = $( this ).css( "top" ) + "px";
-    		$( "#falseForm" ).position().left = $( this ).css( "left" ) + "px";
-    		$( "#falseForm" ).select();
-    		word_to_listen2 = '';
-    		editIfAbove(this.id, "1");
-        });
+        $( this)
+            .click(function() {
+                $( "#falseForm" ).position().top = $( this ).css( "top" ) + "px";
+        		$( "#falseForm" ).position().left = $( this ).css( "left" ) + "px";
+        		$( "#falseForm" ).select();
+        		word_to_listen2 = '';
+        		editIfAbove(this.id, "1");
+
+                // index + 1 is because search with index 0 is the Add new word form
+                if (urlAsArr['search_lel']) {
+                    urlAsArr_search_lel = urlAsArr['search_lel'],
+                    urlAsArr_search_meaning = urlAsArr['search_meaning'],
+                    urlAsArr_search_comment = urlAsArr['search_comment'],
+                    urlAsArr_search_example = urlAsArr['search_example'],
+                    urlAsArr_search_label = urlAsArr['search_label'],
+                    urlAsArr_search_source = urlAsArr['search_source'],
+                    urlAsArr_page = urlAsArr['page'],
+                    urlAsArr_source = urlAsArr['source']
+                } else {
+                    urlAsArr_search_lel = "",
+                    urlAsArr_search_meaning = "",
+                    urlAsArr_search_comment = "",
+                    urlAsArr_search_example = "",
+                    urlAsArr_search_label = "",
+                    urlAsArr_search_source = "",
+                    urlAsArr_page = 1,
+                    urlAsArr_source = ""
+                }
+                search.eq( index + 1 ).val( search_request(
+                    urlAsArr_search_lel,
+                    urlAsArr_search_meaning,
+                    urlAsArr_search_comment,
+                    urlAsArr_search_example,
+                    urlAsArr_search_label,
+                    urlAsArr_search_source,
+                    urlAsArr_page,
+                    urlAsArr_source,
+                    $( window ).scrollTop()
+                ));
+            })
+            .on( "dragover", function() {
+        			editIfAbove(this.id, "2");
+        	});
 	});
 
     closeEdits.each(function() {
@@ -159,12 +198,6 @@ $( window ).on( "load", function() {
             });
         });
     });
-
-	edit_buttons.each(function() {
-		$( this ).on( "dragover", function() {
-			editIfAbove(this.id, "2");
-		});
-	});
 
 
     selection_remover();

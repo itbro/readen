@@ -1,4 +1,4 @@
-$(function() {
+$( window ).on( "load", function() {
 
 	$( "#fields" ).mouseover(function() {
         all_lels = $( ".remember_lel" );
@@ -175,7 +175,7 @@ $(function() {
 
 		});
 
-		$( ".remember_meaning" ).each(function() {
+		all_meanings.each(function() {
             $( this )
                 .on( "input", function() {
                     var pos = carPos(this);

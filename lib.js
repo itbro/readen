@@ -1055,32 +1055,6 @@ function search_request(
     "&scrolling=" + Math.round(scrolling);
 }
 
-function scrolling_back()
-{
-    // When an entry is edited and the button Change is pressed
-    // the scrolling is back to the initial place
-
-    $( window ).scrollTop( urlAsArr["scrolling"] );
-
-    var search = $( "input[name='search']" );
-    $( ".edit_button" ).each(function(index) {
-        $( this ).click(function() {
-            // index + 1 is because search with index 0 is the Add new word form
-            search.eq( index + 1 ).val( search_request(
-                urlAsArr['search_lel'],
-                urlAsArr['search_meaning'],
-                urlAsArr['search_comment'],
-                urlAsArr['search_example'],
-                urlAsArr['search_label'],
-                urlAsArr['search_source'],
-                urlAsArr['page'],
-                urlAsArr['source'],
-                $( window ).scrollTop()
-            ))
-        });
-    });
-}
-
 function when_click_on_search() {
     if ($( "#prefix" ).val() == "" &&
         $( "#search_lel" ).val() == "" &&
@@ -1823,11 +1797,11 @@ function trnslt() {
             var pos = carPos(this);
 
             if (
-                $( this ).is( "#newword_lel") ||
-                $( this ).is( "#newword_example") ||
-                $( this ).is( "#newword_label") ||
-                $( this ).is( "#source_from_new_add") ||
-                $( this ).is( ".result_lel") ||
+                $( this ).is( "#newword_lel" ) ||
+                $( this ).is( "#newword_example" ) ||
+                $( this ).is( "#newword_label" ) ||
+                $( this ).is( "#source_from_new_add" ) ||
+                $( this ).is( ".result_lel" ) ||
                 $( this ).is( ".result_label" ) ||
                 $( this ).is( ".result_source" )
             )
@@ -1841,39 +1815,6 @@ function trnslt() {
             if (event.keyCode == 16) shift_key = "Shift";
         });
 }
-
-function trnslt_words() {
-
-    all_lels = $( "#frame_words").contents().find( ".remember_lel" );
-    all_meanings = $( "#frame_words").contents().find( ".remember_meaning" );
-
-    // For foreign words
-    all_lels.each(function() {
-        $( this )
-            .on( "input", function() {
-                var pos = carPos(this);
-                this.value = nativeToForeign(this.value, pos);
-                this.selectionStart = this.selectionEnd = pos;
-            })
-            .keydown(function(event) {
-                if (event.keyCode == 16) shift_key = "Shift";
-            })
-    });
-
-    // For translations
-    all_meanings.each(function() {
-        $( this )
-        .on( "input", function() {
-            var pos = carPos(this);
-            this.value = foreignToNative(this.value, pos);
-            this.selectionStart = this.selectionEnd = pos;
-        })
-        .keydown(function(event) {
-            if (event.keyCode == 16) shift_key = "Shift";
-        })
-    });
-}
-
 
 function restIfAbove(thisId, youFrom)
 {
