@@ -96,11 +96,4 @@ $(window).on( "load", function() {
 
 	window.onresize = function() { if_window_resized(); }
 	window.onscroll = function() { if_window_scrolled(); }
-
-
-    // The Words
-    trnslt_words();
-    if_words_sound_click_on();
-    if_words_pron_link_click_on();
-    if_words_red_words_click_on();
 });
