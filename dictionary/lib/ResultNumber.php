@@ -1,0 +1,22 @@
+<?php
+    Namespace lib;
+
+    class ResultNumber
+    {
+        public static function words_found($num_rows, $num_rows2)
+        {
+            // Outputs the number of words found
+            // and defines the endings for the words "word" and "translation"
+
+            $num_rows2 == 1 ? $wORws = 'word ' : $wORws = 'words ';
+
+            if ($_SERVER['QUERY_STRING'] == "") {
+                $num_rows == 1 ? $mORms = 'translation' : $mORms = 'translations';
+                return "<span id='stat' title='$num_rows2 $wORws $num_rows $mORms for today'>$num_rows</span>";
+            } else {
+                $num_rows == 1 ? $mORms = 'translation' : $mORms = 'translations';
+                return "<span id='stat' title='$num_rows2 $wORws $num_rows $mORms found'>$num_rows</span>";
+            }
+        }
+
+    }

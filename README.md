@@ -9,7 +9,7 @@ The app consists of 2 parts: the Dictionary and the Sources.
 ### What it looks like
 
 #### The Dictionary
-![Alt text](http://readen.ru/pres_dic_1.gif "Example of usage")
+![Alt text](http://readen.ru/presDic_1.png "Example of usage")
 
 
 #### The Sources (Lyrics)
@@ -30,4 +30,4 @@ Mozilla Firefox / Google Chrome / Opera / Яндекс.Браузер (the lates
 
 Now, you can use the Dictionary (http://localhost/dictionary/) and/or the Sources (http://localhost/).
 
-Enjoy yourself!
+I hope you enjoy the app and find it useful!

@@ -95,7 +95,7 @@
     	$rowExample = str_replace("\r\n", "<br>", $rowExample);
 
 
-    	$rowExample .= edit_form(
+    	$rowExample .= lib\EditingForm::form(
                             $row['id'],
                             $row['lel'],
                             $row['meaning'],

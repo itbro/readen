@@ -151,37 +151,46 @@ $( window ).on( "load", function() {
         		word_to_listen2 = '';
         		editIfAbove(this.id, "1");
 
-                // index + 1 is because search with index 0 is the Add new word form
-                if (urlAsArr['search_lel']) {
-                    urlAsArr_search_lel = urlAsArr['search_lel'],
-                    urlAsArr_search_meaning = urlAsArr['search_meaning'],
-                    urlAsArr_search_comment = urlAsArr['search_comment'],
-                    urlAsArr_search_example = urlAsArr['search_example'],
-                    urlAsArr_search_label = urlAsArr['search_label'],
-                    urlAsArr_search_source = urlAsArr['search_source'],
-                    urlAsArr_page = urlAsArr['page'],
-                    urlAsArr_source = urlAsArr['source']
+                if (document.location.search == "") {
+                    // If the http://localhost/dictionary/ have been opened
+                    // then the search request must be empty
+
+                    // index + 1 is because the element search[0] is
+                    // that in the Add new word form
+                    search.eq( index + 1 ).val( "" );
                 } else {
-                    urlAsArr_search_lel = "",
-                    urlAsArr_search_meaning = "",
-                    urlAsArr_search_comment = "",
-                    urlAsArr_search_example = "",
-                    urlAsArr_search_label = "",
-                    urlAsArr_search_source = "",
-                    urlAsArr_page = 1,
-                    urlAsArr_source = ""
+                    // index + 1 is because search with index 0 is the Add new word form
+                    if (urlAsArr['search_lel']) {
+                        urlAsArr_search_lel = urlAsArr['search_lel'],
+                        urlAsArr_search_meaning = urlAsArr['search_meaning'],
+                        urlAsArr_search_comment = urlAsArr['search_comment'],
+                        urlAsArr_search_example = urlAsArr['search_example'],
+                        urlAsArr_search_label = urlAsArr['search_label'],
+                        urlAsArr_search_source = urlAsArr['search_source'],
+                        urlAsArr_page = urlAsArr['page'],
+                        urlAsArr_source = urlAsArr['source']
+                    } else {
+                        urlAsArr_search_lel = "",
+                        urlAsArr_search_meaning = "",
+                        urlAsArr_search_comment = "",
+                        urlAsArr_search_example = "",
+                        urlAsArr_search_label = "",
+                        urlAsArr_search_source = "",
+                        urlAsArr_page = 1,
+                        urlAsArr_source = ""
+                    }
+                    search.eq( index + 1 ).val( search_request(
+                        urlAsArr_search_lel,
+                        urlAsArr_search_meaning,
+                        urlAsArr_search_comment,
+                        urlAsArr_search_example,
+                        urlAsArr_search_label,
+                        urlAsArr_search_source,
+                        urlAsArr_page,
+                        urlAsArr_source,
+                        $( window ).scrollTop()
+                    ));
                 }
-                search.eq( index + 1 ).val( search_request(
-                    urlAsArr_search_lel,
-                    urlAsArr_search_meaning,
-                    urlAsArr_search_comment,
-                    urlAsArr_search_example,
-                    urlAsArr_search_label,
-                    urlAsArr_search_source,
-                    urlAsArr_page,
-                    urlAsArr_source,
-                    $( window ).scrollTop()
-                ));
             })
             .on( "dragover", function() {
         			editIfAbove(this.id, "2");

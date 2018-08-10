@@ -7,6 +7,8 @@
 
     require_once "../lib.php";
 
+    spl_autoload_register();
+
     // When a new entry added or the existing entry edited or deleted
     if (isset($_POST['action'])) {
     	require_once "database/{$_POST['action']}.php";
@@ -27,7 +29,7 @@
     if (!isset($_GET['search_lel']) && $how_many_pages > 1 && !isset($_GET['page']))
         header("Location: /dictionary/?page=1");
 
-    $words_found = words_found($num_rows, $num_rows2);
+    $words_found = lib\ResultNumber::words_found($num_rows, $num_rows2);
 
     // If the Dictionary has been open from the Sources
     if ($search_source != "")
@@ -42,7 +44,7 @@
     if ($matches69 == 1) $sSource = str_replace(" ", "+", $sSource);
     $sSource = htmlentities(stripslashes($sSource), ENT_QUOTES, "UTF-8", false);
 
-    $page_list_output = pager($num_rows2, $how_many_pages, $page);
+    $page_list_output = lib\Pager::pages($num_rows2, $how_many_pages, $page);
 
 
     // The number of next entry for the Add new word form
@@ -58,8 +60,8 @@
         $toTitle .= " ($num_rows)";
     }
 ?>
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title><?= $toTitle ?></title>
         <meta charset='utf-8'>
@@ -103,14 +105,14 @@
                 // If there is only 1 word
                 if ($meaning_num == 1) {
                     foreach ($arr[$i][$word] as $meaning => $comment) {
-                        entries($arr,$i,$id,$word,$meaning,$comment);
+                        lib\EntriesOutput::entries($arr,$i,$id,$word,$meaning,$comment);
                     }
                 } else {
                 // If several
                     echo "\n <ol class='meaning_list'>\n";
                     foreach ($arr[$i][$word] as $meaning => $comment) {
                         echo "  <li>";
-                        entries($arr,$i,$id,$word,$meaning,$comment);
+                        lib\EntriesOutput::entries($arr,$i,$id,$word,$meaning,$comment);
                         echo "  </li>\n\n";
                         $id++;
                     }

@@ -32,6 +32,7 @@
     <head>
         <meta charset="utf-8">
 
+        <title><?= ucfirst($_GET['source']) ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <link rel="stylesheet" type="text/css" href="sources/css.css">
@@ -44,7 +45,6 @@
 
         <link rel="search" type="application/opensearchdescription+xml"
         href="search_plugin.xml" title="Readen">
-        <title><?= ucfirst($_GET['source']) ?></title>
     </head>
     <body>
         <div id='top'>

@@ -30,7 +30,6 @@
         // when NATIVE_LANGUAGE vice versa
         $lang = FOREIGN_LANGUAGE;
 
-        $onlyRu = 0;
         $transliteration = UNUSED;
 
         // Remove unreadable symbols from Cambridge dictionary
@@ -52,12 +51,12 @@
 
         // If the fields in the request are empty they are replaced by "%"
         // for querying the database
-    	$foreign == '' ? $request_lel = "%" : $request_lel = prepare_lel_for_db($foreign);
-    	$native == '' ? $request_meaning = "%" : $request_meaning = prepare_lel_for_db($native);
-    	$search_comment == '' ? $request_comment = "%" : $request_comment = prepare_lel_for_db($search_comment);
-    	$search_example == '' ? $request_example = "%" : $request_example = prepare_lel_for_db($search_example);
-    	$search_label == '' ? $request_label = "%" : $request_label = prepare_lel_for_db($search_label);
-    	$search_source == '' ? $request_source = "%" : $request_source = prepare_lel_for_db($search_source);
+    	$foreign == '' ? $request_lel = "%" : $request_lel = lib\RequestForDB::foreign($foreign);
+    	$native == '' ? $request_meaning = "%" : $request_meaning = lib\RequestForDB::foreign($native);
+    	$search_comment == '' ? $request_comment = "%" : $request_comment = lib\RequestForDB::foreign($search_comment);
+    	$search_example == '' ? $request_example = "%" : $request_example = lib\RequestForDB::foreign($search_example);
+    	$search_label == '' ? $request_label = "%" : $request_label = lib\RequestForDB::foreign($search_label);
+    	$search_source == '' ? $request_source = "%" : $request_source = lib\RequestForDB::foreign($search_source);
 
         // The search is whether through several columns or the only one column
         $foreign != '' ? $sle = 1 : $sle = 0;
@@ -78,7 +77,7 @@
 
                     search_in_meaning:
 
-        			$request_meaning = prepare_lel_for_db($foreign);
+        			$request_meaning = lib\RequestForDB::foreign($foreign);
         			require "database/queries/only_meaning.php";
         			$num_rows = $db->query($query)->rowCount();
 
@@ -96,7 +95,7 @@
                         if ($transliteration != FOREIGN_TO_NATIVE) {
                             // if not used then use it in the case
                             // the foreign word has been spelt with native letters
-                            $foreign = translit($foreign, FOREIGN_LANGUAGE);
+                            $foreign = lib\Translit::transliteration($foreign, FOREIGN_LANGUAGE);
                             $transliteration = NATIVE_TO_FOREIGN;
 
                             // and send it to search through the foreign words
@@ -108,7 +107,7 @@
                             // in the first place but nothing has been found, so
                             // translate the word back from the native language
                             // to the foreign one
-                            $foreign = translit($foreign, FOREIGN_LANGUAGE);
+                            $foreign = lib\Translit::transliteration($foreign, FOREIGN_LANGUAGE);
                             // и выдать резльтат: 0 найденных строк
                             $result = $db->query($query);
                             $num_rows = 0;
@@ -125,7 +124,7 @@
                     search_in_lel:
 
                     if (in_array(strtolower($foreign), FOREIGN_PARTICLES)) {
-                        $request_lel = prepare_lel_for_db($foreign);
+                        $request_lel = lib\RequestForDB::foreign($foreign);
                         require_once "database/queries/only_particle.php";
                         $result = $db->query($query);
                         $num_rows = $result->rowCount();
@@ -135,7 +134,7 @@
                         $lel_for_search_fields = htmlentities($foreign, ENT_QUOTES, "UTF-8", false);
                         $lel_for_add_new_word_form = htmlentities($foreign, ENT_QUOTES, "UTF-8", false);
                      } else {
-                        $request_lel = prepare_lel_for_db($foreign);
+                        $request_lel = lib\RequestForDB::foreign($foreign);
         				require_once "database/queries/only_lel.php";
         				$num_rows = $db->query($query)->rowCount();
 
@@ -153,7 +152,7 @@
                             if ($transliteration != NATIVE_TO_FOREIGN) {
                                 // if not used then use it in the case
                                 // the native word has been spelt with foreign letters
-                                $foreign = translit($foreign, NATIVE_LANGUAGE);
+                                $foreign = lib\Translit::transliteration($foreign, NATIVE_LANGUAGE);
                                 $transliteration = FOREIGN_TO_NATIVE;
 
                                 goto search_in_meaning;
@@ -166,7 +165,7 @@
                                 // to the native one
                                 $foreign = $_GET['search_lel'];
 
-                                $request_meaning = prepare_lel_for_db($foreign);
+                                $request_meaning = lib\RequestForDB::foreign($foreign);
                                 require "database/queries/only_meaning.php";
                                 $result = $db->query($query);
                                 $num_rows = $result->rowCount();
@@ -191,7 +190,6 @@
                 	// Through translations
             		require "database/queries/only_meaning.php";
             		$lang = NATIVE_LANGUAGE;
-            		$onlyRu = 1;
             		$toTitle = $native;
                     $meaning_for_search_fields = htmlentities($native, ENT_QUOTES, "UTF-8", false);
                     $meaning_for_add_new_word_form = htmlentities($native, ENT_QUOTES, "UTF-8", false);
