@@ -9,7 +9,7 @@ The app consists of 2 parts: the Dictionary and the Sources.
 ### What it looks like
 
 #### The Dictionary
-![Alt text](http://readen.ru/presDic_1.png "Example of usage")
+![Alt text](http://readen.ru/presDic_2.png "Example of usage")
 
 
 #### The Sources (Lyrics)
