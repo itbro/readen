@@ -14,9 +14,9 @@
             if ($how_many_pages > 1) {
 
                 // the previous page
-                if ($this_page == 1)
+                if ($this_page == 1) {
                     $pagePrevious = "<span class='noPage'>&#9664;</span>";
-                else {
+                } else {
                     $rest_part = preg_replace(
                         "/scrolling=([0-9]+)/",
                         "scrolling=0",
@@ -74,7 +74,7 @@
                 </div></div>
 
                 <script>
-                <!-- В выпадающем списке страниц (id='pageList') выбрать текущую страницу -->
+                <!-- The current page is selected in the page list (id='pageList') -->
                 var optionsA = document.getElementById('pageList').getElementsByTagName('option');
                 for (o=0; o<optionsA.length; o++) {
                     if (optionsA[o].value == {$this_page}) {

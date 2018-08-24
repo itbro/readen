@@ -46,7 +46,6 @@
 
     $page_list_output = lib\Pager::pages($num_rows2, $how_many_pages, $page);
 
-
     // The number of next entry for the Add new word form
     $new_word_number = $db->query("SELECT count(*) FROM dictionary")->fetchColumn() + 1;
 

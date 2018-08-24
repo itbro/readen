@@ -3,7 +3,7 @@
 
     class EditingForm
     {
-        public static function form(
+        public static function createEditingForm(
             $row_id,
             $row_lel,
             $row_meaning,

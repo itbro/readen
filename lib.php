@@ -115,23 +115,31 @@
     }
 
 
-    const NATIVE_AND_FOREIGN_LETTERS = "/[a-zа-яё]/i";
 
     function clear_words($words)
     {
-        // Prepares the Words for the database.
-        // If there is no word then nothing is saved
-        preg_match(NATIVE_AND_FOREIGN_LETTERS, $words) ? $words = $words : $words = "";
+        // Prepares the Words for saving to the Database.
+        //
+        // 1. If there is no foreign word or word at all
+        //    then nothing is saved to the field Words in the Database
+        // 2. If the last rows are empty they will be removed
 
-        // The last empty rows are removed
+        $nafl = "/[a-zа-яё]/i"; // Native and foreign letters
+
+        // 1
+        preg_match($nafl, $words) ? $words = $words : $words = "";
+
+        // 2
         $words_arr = explode("\r\n", $words);
         $to = count($words_arr);
         if ($to > 0) {
             for ($i = 0; $i < $to; $i++) {
-                if ($words_arr[$i] != "|") $full_row = $i;
+                if ($words_arr[$i] != "|")
+                    $full_row = $i;
             }
             array_splice($words_arr, $full_row + 1);
             $words = implode($words_arr, "\r\n");
         }
+
         return $words;
     }

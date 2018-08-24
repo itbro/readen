@@ -18,7 +18,7 @@ The app consists of 2 parts: the Dictionary and the Sources.
 Windows 10, 8.1, 8, 7  
 Apache/2.4  
 PHP 7.2  
-MySQL 5.7
+MySQL 5.7  
 Mozilla Firefox, Google Chrome, Opera, Яндекс.Браузер (the latest releases)
 
 

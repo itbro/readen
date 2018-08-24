@@ -86,7 +86,7 @@
         )
         {
             // The transliteration:
-            // if $lang == NATIVE_LANGUAGE then the transliteration
+            // if $lang == NATIVE_LANGUAGE then transliterate a word
             // from the native language to the foreign one
             // otherwise from the foreign language to the native one
 
