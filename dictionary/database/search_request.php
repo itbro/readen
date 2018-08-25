@@ -70,6 +70,9 @@
     	if ($pluralSearch == 1) {
             // The search through the only one column
             if ($foreign != '') {
+
+                $trnsltrshn = new lib\Translit();
+
                 // If words was only typed in the toppest field ("foreign")
         		if (preg_match(NATIVE_LETTERS, $foreign, $matches)) {
                     // If the word contains native letters
@@ -95,7 +98,7 @@
                         if ($transliteration != FOREIGN_TO_NATIVE) {
                             // if not used then use it in the case
                             // the foreign word has been spelt with native letters
-                            $foreign = lib\Translit::transliteration($foreign, FOREIGN_LANGUAGE);
+                            $foreign = $trnsltrshn->transliteration($foreign, FOREIGN_LANGUAGE);
                             $transliteration = NATIVE_TO_FOREIGN;
 
                             // and send it to search through the foreign words
@@ -107,7 +110,7 @@
                             // in the first place but nothing has been found, so
                             // translate the word back from the native language
                             // to the foreign one
-                            $foreign = lib\Translit::transliteration($foreign, FOREIGN_LANGUAGE);
+                            $foreign = $trnsltrshn->transliteration($foreign, FOREIGN_LANGUAGE);
                             // и выдать резльтат: 0 найденных строк
                             $result = $db->query($query);
                             $num_rows = 0;
@@ -152,7 +155,7 @@
                             if ($transliteration != NATIVE_TO_FOREIGN) {
                                 // if not used then use it in the case
                                 // the native word has been spelt with foreign letters
-                                $foreign = lib\Translit::transliteration($foreign, NATIVE_LANGUAGE);
+                                $foreign = $trnsltrshn->transliteration($foreign, NATIVE_LANGUAGE);
                                 $transliteration = FOREIGN_TO_NATIVE;
 
                                 goto search_in_meaning;

@@ -4,7 +4,7 @@
     class EditingForm
     {
           /**
-          * Creates the Edit entry form
+          * Creates the Edit entry form for every entry
           * used in dictionary\views\vyvod_strok.php
           *
           * @param int $row_id id of entry
