@@ -42,8 +42,7 @@ var extra_fields_indent = 16;
 // For pronunciation: listen()
 var n_v_a = "<div id='n_v_a'></div>";
 
-function words_scroll_pos()
-{
+function words_scroll_pos() {
     // Sets scrolling position in the Words
 	if (navigator.userAgent.search("Edge") != -1)
         return document.getElementById("frame_words").contentWindow.document.body;
@@ -51,15 +50,13 @@ function words_scroll_pos()
         return document.getElementById("frame_words").contentWindow.document.documentElement;
 }
 
-function newWinPos()
-{
+function newWinPos() {
     // The coordinates of the Dictionary window when it is opened
 	return 'width=600,height=' + heightDic + ',scrollbars=1,top=' + topDic +
     ',left=' + (Math.round(document.getElementById("bottomLeft").getBoundingClientRect().left) - 6);
 }
 
-function editor_frame_onclick(e)
-{
+function editor_frame_onclick(e) {
 	word = document.getElementById("editor_frame").contentWindow.document.getSelection();
 	word = (word + "").trim();
 
@@ -72,8 +69,7 @@ function editor_frame_onclick(e)
 	}
 }
 
-function addFields(nfn)
-{
+function addFields(nfn) {
     // Adds new words from the Sources to the Words
 	asd = "";
 	newFileds = "";
@@ -101,8 +97,7 @@ function addFields(nfn)
 	words_scroll_pos().scrollTop = words_scroll_pos().scrollHeight;
 }
 
-function show_red_num(red_num)
-{
+function show_red_num(red_num) {
     // Counts how many words in the Words have no translations
     // when a word puts into the Words from the Sources
 	all_lels_red = $( "#frame_words" ).contents().find( ".remember_lel" );
@@ -121,8 +116,7 @@ function show_red_num(red_num)
 	$( "#red_words_num" ).html( red_num );
 }
 
-function find_word_right(word)
-{
+function find_word_right(word) {
     // Searches for the word selected among the Words
 	var word_test = word.replace(/\.|\|/g, "");
 	if (word_test != '' &&
@@ -157,8 +151,7 @@ function find_word_right(word)
 	}
 }
 
-function how_many_words()
-{
+function how_many_words() {
     // For the Words
     // Counts the number of words overall added to the Words
     // when they added from a source
@@ -169,8 +162,7 @@ function how_many_words()
 	$( "#new_words_num" ).html( "Overall: " + new_words_num + "/" );
 }
 
-function add_empty_field_if_needed(slovo)
-{
+function add_empty_field_if_needed(slovo) {
     // For the Words
     // Are there empty rows (empty_field_num)?
 	var empty_field_num = 0;
@@ -220,8 +212,7 @@ function how_many_words_words() {
 	$( "#new_words_num", parent.document ).html( "Overall: " + new_words_num + "/" );
 }
 
-function show_red_num_words(red_num)
-{
+function show_red_num_words(red_num) {
     // For the Words
     // Counts how many words in the Words have no translations
     // when a word is typed in the Words themselves
@@ -244,8 +235,7 @@ function show_red_num_words(red_num)
 	$( "#red_words_num", parent.document ).html( red_num );
 }
 
-function AddPage_onclick()
-{
+function AddPage_onclick() {
     if (position != -999) {
         options3[position].selected = true;
         $( ".form_header" ).eq( 1 ).html( "add page" );
@@ -275,8 +265,7 @@ function AddPage_onclick()
     }
 }
 
-function EditLink_onclick()
-{
+function EditLink_onclick() {
 	if ($( "#edit_page" ).css( "display" ) == "none") {
 		$( window ).scrollTop( 0 );
 
@@ -306,8 +295,7 @@ function EditLink_onclick()
 	}
 }
 
-function add_edit_form_height()
-{
+function add_edit_form_height() {
     // Sets the height of form to add/edit text
     var under_textarea = 0;
 
@@ -328,16 +316,14 @@ function add_edit_form_height()
     }
 }
 
-function CleanLink()
-{
+function CleanLink() {
     // Removes highlighting in words
 	$( window ).scrollTop( self.pageYOffset );
 	$( "#enter_text" ).val( $( "#editor_frame" ).contents().find( "#text" ).html().replace(/<red>|<\/red>/g, "").replace(/<br>/g, "\r\n") );
 	$( "#editor_frame" ).contents().find( "#text" ).html( $( "#enter_text" ).val().replace(/\n/g, "<br>") );
 }
 
-function SaveLink_onclick()
-{
+function SaveLink_onclick() {
     // Make words in the Words like this:
     // foreign word|translation
     if ($( "#addPage" )[0] && $( "#addPage" ).css( "display" ) == "block") {
@@ -363,8 +349,7 @@ function SaveLink_onclick()
     }
 }
 
-function DeleteLink_onclick()
-{
+function DeleteLink_onclick() {
 	if ($( "#deleteWarning" ).css( "display" ) == "none") {
 		$( "#DeleteLink" ).css( "background-color", color_4 );
 		$( "#DeleteLink" ).css( "color", color_5 );
@@ -382,16 +367,14 @@ function DeleteLink_onclick()
 	}
 }
 
-function func1()
-{
+function func1() {
     // If scrolling below 10px the shadow appears
     $( window ).scrollTop() > 10 ?
     $( "#top" ).css( "box-shadow", "0 0 7px #999" ) :
     $( "#top" ).css( "box-shadow", "none" );
 }
 
-function make_iframe_editable()
-{
+function make_iframe_editable() {
     // Makes the iframe editable
 	$( "#editor_frame" ).contents().prop( "designMode", "on");
 	$( "#editor_frame" ).contents().find( "#text" ).html( $( "#text" ).html() );
@@ -406,8 +389,7 @@ function make_iframe_editable()
 	$( window ).scrollTop( $( "#page_scroll" ).val() );
 }
 
-function func3()
-{
+function func3() {
 	// For the Words
 	$( "#frame_words" ).contents().find( "#fields" ).html( $( "#fields" ).html() );
 
@@ -430,16 +412,14 @@ function func3()
 	$( "#occ_num" ).css( "left", document.getElementById("bottomRight").getBoundingClientRect().left + "px" );
 }
 
-function meanpron2_onmouseover()
-{
+function meanpron2_onmouseover() {
 	$( "#meanpron" ).css( "top", document.getElementById("editor_frame").getBoundingClientRect().top +
     frames["text_editable_frame"].document.getElementById("meanpron2").getBoundingClientRect().top + "px" );
 	$( "#editor_frame" ).contents().find( "#meanpron2" ).hide();
 	$( "#meanpron" ).show();
 }
 
-function searchInDic_oninput(lel, source)
-{
+function searchInDic_oninput(lel, source) {
     // Interaction with the Dictionary
 	window.open("/dictionary/?" +
     "search_lel=" + escape(encodeURI(lel.trim())) +
@@ -456,15 +436,13 @@ function searchInDic_oninput(lel, source)
 	$( "#searchInDic" ).val( "" );
 }
 
-function if_searchInDic_clicked_on()
-{
+function if_searchInDic_clicked_on() {
     // Open the Dictionary
 	window.open("/dictionary/", '_blank', newWinPos());
 	$( "#searchInDic" ).val( "" );
 }
 
-function if_window_scrolled()
-{
+function if_window_scrolled() {
     func1();
 
 	if ($( window ).outerWidth() < 948) {
@@ -507,8 +485,7 @@ function if_window_scrolled()
 	}
 }
 
-function if_window_resized()
-{
+function if_window_resized() {
 	if (document.documentElement.offsetWidth < 948) {
 		$( "#topMenuSubMenu" ).css( "position", "fixed" );
 		$( "#topMenuSubMenu" ).css({
@@ -553,8 +530,7 @@ function if_window_resized()
 	}
 }
 
-function offsetWidth_947()
-{
+function offsetWidth_947() {
 	if (document.documentElement.offsetWidth < 948) {
 		$( "#topMenuSubMenu" ).css( "position", "fixed" );
 		$( "#topMenuSubMenu" ).css({
@@ -565,8 +541,7 @@ function offsetWidth_947()
 	}
 }
 
-function editor_frame_onmousedown()
-{
+function editor_frame_onmousedown() {
 	$( "#meanpron" ).hide();
 	$( "#word_meaning" ).show();
 	$( "#word_highlight" ).show();
@@ -581,8 +556,7 @@ function editor_frame_onmousedown()
         $( "#n_v_a" ).remove();
 }
 
-function pron_link_oninput()
-{
+function pron_link_oninput() {
 	pron_add($( "#pron_link" ).val() + "|" + $( "#pron_word" ).val());
 	$( "#meanpron" ).hide();
 	$( "#pron_link" ).hide();
@@ -590,8 +564,7 @@ function pron_link_oninput()
 	$( "#pron_word" ).val( "" );
 }
 
-function pron_link_onclick()
-{
+function pron_link_onclick() {
     // Open a window to add a pronunciation manually
     $( "#file_name" ).val( document.getElementById("editor_frame").contentWindow.document.getSelection() );
     $( "#file" ).click();
@@ -638,8 +611,7 @@ function pron_link_onclick()
 
 // [the Text interaction buttons]
 
-function four_buttons()
-{
+function four_buttons() {
     $( "button" ).on( "click", function() {
         if (this.id == "word_meaning") word_meaning();
         else if (this.id == "word_highlight") word_highlight();
@@ -648,8 +620,7 @@ function four_buttons()
     });
 }
 
-function word_meaning()
-{
+function word_meaning() {
     // Searches for a word selected
 	$( "#word_meaning" ).hide();
 	$( "#word_highlight" ).hide();
@@ -684,8 +655,7 @@ function word_meaning()
 	$( "#editor_frame" ).contents().find( "#meanpron2" ).css( "height", $( "#meanpron" ).outerHeight() + "px" );
 }
 
-function word_highlight()
-{
+function word_highlight() {
     // Highlight a word selected
 	document.getElementById("editor_frame").contentWindow.document.execCommand(
         "insertHTML",
@@ -696,8 +666,7 @@ function word_highlight()
 	$( "#meanpron" ).hide();
 }
 
-function word_clear()
-{
+function word_clear() {
     // Remove highlighting from the word selected
 	document.getElementById("editor_frame").contentWindow.document.execCommand(
         "insertHTML",
@@ -708,8 +677,7 @@ function word_clear()
 	$( "#meanpron" ).hide();
 }
 
-function sound()
-{
+function sound() {
 	if ($( "#sound" ).html() == "#") {
         if ($( "#sound" ).prop( "title" ) == "Change the word!")
             pron_change(word);
@@ -785,8 +753,7 @@ function sound()
 	}
 }
 
-function sound_dictionary()
-{
+function sound_dictionary() {
     $( this ).hide();
     $("#pron_link").css( "top", $("#sound").css( "top" ) );
     $("#pron_link").css( "left", $("#sound").css( "left" ) );
@@ -822,8 +789,7 @@ function sound_dictionary()
         return false;
 }
 
-function meanPronPos()
-{
+function meanPronPos() {
 	if ($( "#meanpron" ).css( "display" ) == "block") {
 		$( "#editor_frame" ).contents().find( "#meanpron2" ).html( $( "#meanpron" ).html() );
 		if ($( "#editor_frame" ).contents().find( "#meanpron2" ).css( "display" ) == "none") {
@@ -833,29 +799,25 @@ function meanPronPos()
 	}
 }
 
-function pron_change(str)
-{
+function pron_change(str) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("GET", "/ajax/change.php?q=" + str, true);
 	xmlhttp.send();
 }
 
-function pron_delete(str)
-{
+function pron_delete(str) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("GET", "/ajax/delete.php?q=" + str, true);
 	xmlhttp.send();
 }
 
-function pron_add(str)
-{
+function pron_add(str) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/ajax/add.php?q=" + str, true);
     xmlhttp.send();
 }
 
-function pron_add_manually(e)
-{
+function pron_add_manually(e) {
     // Adds the pronunciation file to the database manually
     e.preventDefault();
     var that = $( this ),
@@ -875,8 +837,7 @@ function pron_add_manually(e)
     });
 }
 
-function param(topMenuSubMenu_from_left)
-{
+function param(topMenuSubMenu_from_left) {
     // Sets the coordinates of the Dictionary window
     // when it is opened in the Sources
     var winScr = 0;
@@ -916,8 +877,7 @@ function make_them_black() {
 	});
 }
 
-function delete_cookie(cookie_name)
-{
+function delete_cookie(cookie_name) {
     // Remove the source from the Add new word form when the tab is closed
     var cookie_date = new Date();
     cookie_date.setTime(cookie_date.getTime() - 1);
@@ -969,8 +929,7 @@ function if_clear_search_ondragover() {
     $( this ).hide();
 }
 
-function extra_dic_param()
-{
+function extra_dic_param() {
     // Sets the coordinates of the extra dictionaries windows
     // when it is opened in the Dictionary
     if (window.screenX <= 0)
@@ -980,8 +939,7 @@ function extra_dic_param()
         window.screenY + ",left=" + window.screenX;
 }
 
-function if_window_resize()
-{
+function if_window_resize() {
     $( "#td_search" ).css( "left",
     document.getElementById("dictionary").getBoundingClientRect().left + "px" );
 
@@ -1004,8 +962,7 @@ function if_window_resize()
         iniSleft + "px" );
 }
 
-function link_for_pageList()
-{
+function link_for_pageList() {
     // For the Dictionary
     // Prepares the links for the list of pages
     window.location = document.location.search
@@ -1013,8 +970,7 @@ function link_for_pageList()
     .replace(/scrolling=[0-9]+/, "scrolling=0");
 }
 
-function selection_remover()
-{
+function selection_remover() {
     // Removes the highlighting from the word
     $( ".rest_button_closed" ).each(function() {
         $( this ).click(function() {
@@ -1041,8 +997,7 @@ function search_request(
     page,
     source,
     scrolling
-)
-{
+) {
     // Prepares the query string for the GET request
     return "search_lel=" + search_lel.trim() +
     "&search_meaning=" + search_meaning.trim() +
@@ -1071,8 +1026,7 @@ function when_click_on_search() {
     }
 }
 
-function searches()
-{
+function searches() {
     var prefixValue = "";
     $.trim( $( "#search_lel" ).val() ) == "" ?
     prefixValue = $.trim( $( "#prefix" ).val() ) :
@@ -1092,8 +1046,7 @@ function searches()
     ));
 }
 
-function listen(str, event)
-{
+function listen(str, event) {
     // For the Sources
     if (str != '') {
         var xmlhttp = new XMLHttpRequest();
@@ -1195,8 +1148,7 @@ function listen(str, event)
 	}
 }
 
-function listen_words(str, event)
-{
+function listen_words(str, event) {
     if (str != '') {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -1298,8 +1250,7 @@ function listen_words(str, event)
 	}
 }
 
-function if_words_sound_click_on()
-{
+function if_words_sound_click_on() {
     $( "#sound" ).click(function() {
         if ($( "#sound" ).html() == "#") {
             if ($( "#sound" ).attr( "title" ) == "Change the word!")
@@ -1351,8 +1302,7 @@ function if_words_sound_click_on()
     });
 }
 
-function if_words_pron_link_click_on()
-{
+function if_words_pron_link_click_on() {
     $( "#pron_link" )
     .on( "input", function() {
         pron_add($( "#pron_link" ).val() + "|"
@@ -1371,8 +1321,7 @@ function if_words_pron_link_click_on()
     });
 }
 
-function if_words_red_words_click_on()
-{
+function if_words_red_words_click_on() {
     $( "#red_words_num").click(function() {
         if ($( "#red_words_num").html() != 0) {
             $( this ).css( "color" ) != color_6 ?
@@ -1382,8 +1331,7 @@ function if_words_red_words_click_on()
     });
 }
 
-function listen_dictionary(str, event)
-{
+function listen_dictionary(str, event) {
     if (str != '') {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -1468,15 +1416,13 @@ function listen_dictionary(str, event)
 	}
 }
 
-function listen_word(lw)
-{
+function listen_word(lw) {
 	$( "#sound" ).hide();
 	$( "#audio" ).attr( "src", lw );
 	document.getElementById("audio").play();
 }
 
-function where_listen()
-{
+function where_listen() {
     if ($( ".word_en" )[0]) {
         $( ".word_en, .meaning_normal, .word_example, result_meaning_checkbox_both, checkbox_1, checkbox_2, checkbox_1_2, list_example" ).mouseup(function(event) {
             if (word_to_listen2 == '') {
@@ -1582,8 +1528,7 @@ function if_Macmillan_clicked() {
     }
 }
 
-function if_no_word_found()
-{
+function if_no_word_found() {
     // If no word has been found
     // See settings.js -> var searchEngine
 
@@ -1635,15 +1580,13 @@ function if_no_word_found()
     }
 }
 
-function add_new_word_left()
-{
+function add_new_word_left() {
     // Set the horizontal coordinates for the Add new word form
 	return document.getElementById("dictionary").getBoundingClientRect().left +
     parseInt($("#dictionary").outerWidth() / 6.5) + "px";
 }
 
-function searchRequest(dicName)
-{
+function searchRequest(dicName) {
 	var rough_search = $("#search_lel").val().replace(/^\s+/, "").replace(/\s+$/, "");
 	var search_arr = rough_search.split(" ");
 
@@ -1670,24 +1613,21 @@ function searchRequest(dicName)
         return search;
 }
 
-function tag_framing(what, opentag, closetag)
-{
+function tag_framing(what, opentag, closetag) {
 	var AB = what.value.substring(0, what.selectionStart);
 	var BC = what.value.substring(what.selectionStart, what.selectionEnd);
 	var CD = what.value.substring(what.selectionEnd, what.value.length);
 	what.value = AB + opentag + BC + closetag + CD;
 }
 
-function remove_tags(what)
-{
+function remove_tags(what) {
 	var AB = what.value.substring(0, what.selectionStart);
 	var BC = what.value.substring(what.selectionStart, what.selectionEnd);
 	var CD = what.value.substring(what.selectionEnd, what.value.length);
 	what.value = AB + BC.replace(/\[[^\]]+\]/g, "") + CD;
 }
 
-function carPos(t)
-{
+function carPos(t) {
     // For the transliteration
     // Pinpoints the position of symbol typed in
 	if (document.selection) {
@@ -1701,8 +1641,7 @@ function carPos(t)
         return t.selectionStart;
 }
 
-function nativeToForeign(text, pos)
-{
+function nativeToForeign(text, pos) {
     // The transliteration from the native language to the foreign one
 	if (typeof native_foreign[text.substring(pos-1, pos)] === "undefined") {
 		shift_key = "";
@@ -1740,8 +1679,7 @@ function nativeToForeign(text, pos)
         );
 }
 
-function foreignToNative(text, pos)
-{
+function foreignToNative(text, pos) {
     // The transliteration from the foreign language to the native one
 	if (typeof foreign_native[text.substring(pos-1, pos)] === "undefined") {
 		shift_key = "";
@@ -1816,8 +1754,7 @@ function trnslt() {
         });
 }
 
-function restIfAbove(thisId, youFrom)
-{
+function restIfAbove(thisId, youFrom) {
     // Shows the contents of entries
 	form_id1 = thisId.replace('r', 'shr');
 	if (youFrom == 1) {
@@ -1835,8 +1772,7 @@ function restIfAbove(thisId, youFrom)
 	}
 }
 
-function editIfAbove(thisId, youFrom)
-{
+function editIfAbove(thisId, youFrom) {
     // To edit entries
 	form_id1 = thisId.replace('e', 'f');
 	if (youFrom == 1) {
@@ -1847,8 +1783,7 @@ function editIfAbove(thisId, youFrom)
         $( "#" + form_id1 ).show( "slow" );
 }
 
-function edit_example_buttons()
-{
+function edit_example_buttons() {
     // BB-codes
 
     $( ".bbc_b" ).each(function() {
@@ -1939,8 +1874,7 @@ function hide_show_fields_clearing_button() {
         $( "#clear_search" ).show();
 }
 
-function show_clear_button()
-{
+function show_clear_button() {
     // Shows the clear search fields button
     // if at least one field is filled
     if ($( "#search_lel" ).val() != "" ||
