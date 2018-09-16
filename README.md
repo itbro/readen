@@ -7,9 +7,7 @@ The app consists of 2 parts: the Sources and the Dictionary. The Dictionary is l
 
 ### What it looks like
 
-[The Sources](http://demo.readen.ru/)
-
-[The Dictionary](http://demo.readen.ru/dictionary/)
+Here are the demo versions of the app: [Sources](http://demo.readen.ru/), [Dictionary](http://demo.readen.ru/dictionary/).
 
 
 ## System Requirements
