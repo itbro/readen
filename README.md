@@ -8,19 +8,17 @@ The app consists of 2 parts: the Sources and the Dictionary. The Dictionary is l
 ### What it looks like
 
 Here are the demo versions of the app: [Sources](http://demo.readen.ru/), [Dictionary](http://demo.readen.ru/dictionary/).
-
-
+  
 ## System Requirements
 Windows 10, 8.1, 8, 7  
 Apache/2.4  
 PHP 7.2  
 MySQL 5.7  
 Mozilla Firefox, Google Chrome, Opera, Яндекс.Браузер (the latest releases)
-
-
+  
 ## Installation
 1. Edit the file _db_settings.php_ according to you database settings.
-2. Run the file _setup.php_ on your browser (go to http://localhost/setup.php).  
+2. Run the file _setup.php_ on your browser (that is, go to http://localhost/setup.php).  
    If everything go right the message "Well done! :)" will appear on the screen.  
 
 Now, you can use the Dictionary (http://localhost/dictionary/) and/or the Sources (http://localhost/).
