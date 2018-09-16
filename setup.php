@@ -4,10 +4,12 @@
     // #1
 
     try {
-        $connection = new PDO("mysql:host={$host}",
-                                $user,
-                                $pass,
-                                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $connection = new PDO(
+            "mysql:host={$host}",
+            $user,
+            $pass,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
     } catch (Exception $error) {
         echo "<center>
             Can't connect to MySQL :(

@@ -98,7 +98,7 @@ Remove all of the empty rows: =-">?</span></div>
                     $db = null;
 ?>
                     <iframe NAME='text_editable_frame'
-                        src='sources/text.html?<?= $_GET['source'] ?>'
+                        src='sources/text.php?<?= $_GET['source'] ?>'
                         frameborder='0' spellcheck='false' scrolling='no'
                         id='editor_frame'></iframe>
                     <div id='scroll_a' style='display:none;'></div>

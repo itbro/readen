@@ -90,4 +90,6 @@ $(window).on( "load", function() {
 
 	window.onresize = function() { if_window_resized(); }
 	window.onscroll = function() { if_window_scrolled(); }
+
+    if_words_red_words_click_on();
 });
