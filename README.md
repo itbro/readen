@@ -13,10 +13,10 @@ MySQL 5.7
 Mozilla Firefox, Google Chrome, Opera, Яндекс.Браузер (the latest releases)
 
 ## Installation
-1. Edit the file _db_settings.php_ according to you database settings.
-2. Run the file _setup.php_ on your browser (that is, just go to http://localhost/setup.php).  
-   If everything go right the message "Well done! :)" will appear on the screen.  
+1. Edit the file _db_settings.php_ according to your database settings.
+2. Run the file _setup.php_ on your browser (just go to http://localhost/setup.php).  
+   If everything goes right the message "Well done! :)" will appear on the screen.  
 
 Now, you can use the Sources (http://localhost/) and the Dictionary (http://localhost/dictionary/).
 
-I hope you enjoy the app and find it useful!
+I hope you enjoy Readen!
