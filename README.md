@@ -1,13 +1,9 @@
 # Readen
 
 ## About
-Readen is an application to help people learning a foreign language. If you like reading foreign texts the app may be useful for you.
+Readen is an application to help people learning a foreign language. If you like reading foreign texts you may find the app useful for you.
 This release is for those who speak Russian and are learning English. It runs on your local server, so it can be used offline.
 The app consists of 2 parts: the Sources and the Dictionary. The Dictionary is linked to the Source.
-
-### What it looks like
-
-Here are the demo versions of the app: [Sources](http://demo.readen.ru/), [Dictionary](http://demo.readen.ru/dictionary/).
 
 ## System Requirements
 Windows 10, 8.1, 8, 7  
